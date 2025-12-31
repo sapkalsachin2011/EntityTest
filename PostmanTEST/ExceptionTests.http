@@ -1,0 +1,132 @@
+### Test Exception Handling Endpoints
+### Make sure the API is running: dotnet run --project EntityTestApi
+
+@baseUrl = http://localhost:5274
+@baseUrlHttps = https://localhost:7274
+
+###############################################
+### 1. Test NotFoundException (404)
+###############################################
+GET {{baseUrl}}/api/products/test/notfound
+Accept: application/json
+
+### Expected Response:
+### Status: 404 Not Found
+### Body: {
+###   "statusCode": 404,
+###   "message": "Product with ID 999 not found",
+###   "details": "Stack trace (in Development only)",
+###   "timestamp": "2025-12-30T..."
+### }
+
+
+###############################################
+### 2. Test ValidationException (400)
+###############################################
+GET {{baseUrl}}/api/products/test/validation
+Accept: application/json
+
+### Expected Response:
+### Status: 400 Bad Request
+### Body: {
+###   "statusCode": 400,
+###   "message": "One or more validation errors occurred.",
+###   "errors": {
+###     "Name": ["Name is required", "Name must be at least 3 characters"],
+###     "Price": ["Price must be greater than 0"]
+###   },
+###   "details": "Stack trace (in Development only)",
+###   "timestamp": "2025-12-30T..."
+### }
+
+
+###############################################
+### 3. Test Generic Exception (500)
+###############################################
+GET {{baseUrl}}/api/products/test/error
+Accept: application/json
+
+### Expected Response:
+### Status: 500 Internal Server Error
+### Body: {
+###   "statusCode": 500,
+###   "message": "Something went wrong in the service layer" (Dev) 
+###            OR "An error occurred while processing your request." (Production),
+###   "details": "Stack trace (in Development only)",
+###   "timestamp": "2025-12-30T..."
+### }
+
+
+###############################################
+### 4. Test Database Exception (400)
+###############################################
+GET {{baseUrl}}/api/products/test/dberror
+Accept: application/json
+
+### Expected Response:
+### Status: 400 Bad Request
+### Body: {
+###   "statusCode": 400,
+###   "message": "Database operation failed. Please check your data.",
+###   "details": "Inner exception details (in Development only)",
+###   "timestamp": "2025-12-30T..."
+### }
+
+
+###############################################
+### 5. Test Real NotFoundException - Non-existent Product
+###############################################
+GET {{baseUrl}}/api/products/99999
+Accept: application/json
+
+### Expected Response:
+### Status: 404 Not Found
+### Body: {
+###   "statusCode": 404,
+###   "message": "Product with key '99999' was not found.",
+###   "timestamp": "2025-12-30T..."
+### }
+
+
+###############################################
+### 6. Test HTTPS Endpoint (if configured)
+###############################################
+GET {{baseUrlHttps}}/api/products/test/notfound
+Accept: application/json
+
+
+###############################################
+### 7. Test with Different Accept Headers
+###############################################
+
+### Test with XML Accept header (should still return JSON error)
+GET {{baseUrl}}/api/products/test/notfound
+Accept: application/xml
+
+### Test with no Accept header
+GET {{baseUrl}}/api/products/test/notfound
+
+
+###############################################
+### TESTING INSTRUCTIONS
+###############################################
+
+### Step 1: Start the API
+### Open terminal and run:
+###   cd EntityTestApi
+###   dotnet run
+
+### Step 2: Run each test by clicking "Send Request" above each ###
+### OR use the REST Client VS Code extension
+
+### Step 3: Verify responses match expected status codes and JSON structure
+
+### Step 4: Check console logs
+### - Look for: "An unhandled exception occurred: ..."
+### - Middleware logs all exceptions before handling them
+
+### Step 5: Test in Production mode
+### Stop the API and run:
+###   export ASPNETCORE_ENVIRONMENT=Production
+###   dotnet run --project EntityTestApi
+### Notice: No stack traces in Production responses

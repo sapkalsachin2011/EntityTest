@@ -1,0 +1,6 @@
+@EntityTestApi_HostAddress = http://localhost:5273
+
+GET {{EntityTestApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

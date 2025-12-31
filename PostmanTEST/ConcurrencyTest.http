@@ -1,0 +1,24 @@
+### Get product to retrieve rowVersion
+GET http://localhost:5274/api/products/1
+
+### Update product with rowVersion
+PUT http://localhost:5274/api/products/1
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "description": "High-performance laptop for developers",
+  "price": 3000,
+  "rowVersion": "AAAAAAAAVfc="
+}
+
+### Attempt to update again with same rowVersion (should trigger concurrency error)
+PUT http://localhost:5274/api/products/1
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "description": "Another update",
+  "price": 3100,
+  "rowVersion": "AAAAAAAAVfc="
+}

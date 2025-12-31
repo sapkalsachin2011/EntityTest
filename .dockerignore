@@ -1,0 +1,16 @@
+**/.classpath
+**/.dockerignore
+**/.env
+**/.git
+**/.gitignore
+**/.project
+**/.settings
+**/.toolstartsettings
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/.DS_Store
+**/dist
+**/npm-debug.log
+README.md
