@@ -24,11 +24,45 @@ namespace EntityTestApi.Controllers
         private readonly IMemoryCache _memoryCache;
         private const string ALL_PRODUCTS_CACHE_KEY = "all_products";
 
+    // CQRS handlers
+    private readonly CQRS.Commands.ICommandHandler<CQRS.Commands.CreateProductCommand> _createProductCommandHandler;
+    private readonly CQRS.Queries.IQueryHandler<CQRS.Queries.GetProductsQuery, IEnumerable<string>> _getProductsQueryHandler;
+
+
         public ProductsController(ApplicationDbContext context, ILogger<ProductsController> logger, IMemoryCache memoryCache)
+        : this(context, logger, memoryCache, null, null) { }
+
+        public ProductsController(
+            ApplicationDbContext context,
+            ILogger<ProductsController> logger,
+            IMemoryCache memoryCache,
+            CQRS.Commands.ICommandHandler<CQRS.Commands.CreateProductCommand> createProductCommandHandler,
+            CQRS.Queries.IQueryHandler<CQRS.Queries.GetProductsQuery, IEnumerable<string>> getProductsQueryHandler)
         {
             _context = context;
             _logger = logger;
             _memoryCache = memoryCache;
+            _createProductCommandHandler = createProductCommandHandler;
+            _getProductsQueryHandler = getProductsQueryHandler;
+        }
+        /// <summary>
+        /// CQRS: Create a new product using command handler
+        /// </summary>
+        [HttpPost("cqrs")]
+        public async Task<IActionResult> CreateProductCqrs([FromBody] CQRS.Commands.CreateProductCommand command, CancellationToken cancellationToken)
+        {
+            await _createProductCommandHandler.Handle(command, cancellationToken);
+            return Ok(new { message = "Product creation command handled (CQRS pattern)." });
+        }
+
+        /// <summary>
+        /// CQRS: Get all products using query handler
+        /// </summary>
+        [HttpGet("cqrs")]
+        public async Task<IActionResult> GetProductsCqrs(CancellationToken cancellationToken)
+        {
+            var result = await _getProductsQueryHandler.Handle(new CQRS.Queries.GetProductsQuery(), cancellationToken);
+            return Ok(result);
         }
 
         /// <summary>

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using EntityTestApi.Data;
 using Microsoft.IdentityModel.Tokens;
 using EntityTestApi.Middleware;
+using Microsoft.AspNetCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+// Register CQRS command and query handlers
+builder.Services.AddScoped<EntityTestApi.CQRS.Commands.ICommandHandler<EntityTestApi.CQRS.Commands.CreateProductCommand>, EntityTestApi.CQRS.Commands.CreateProductCommandHandler>();
+builder.Services.AddScoped<EntityTestApi.CQRS.Queries.IQueryHandler<EntityTestApi.CQRS.Queries.GetProductsQuery, IEnumerable<string>>, EntityTestApi.CQRS.Queries.GetProductsQueryHandler>();
+
 // Add support for content negotiation (JSON and XML)
 builder.Services.AddControllers(options =>
 {
@@ -38,16 +43,21 @@ builder.Services.AddControllers(options =>
 .AddXmlSerializerFormatters() // Add XML support
 .AddXmlDataContractSerializerFormatters(); // Add XML DataContract support
 
+
 builder.Services.AddOutputCache();
 builder.Services.AddMemoryCache(); // Add In-Memory Caching
 builder.Services.AddScoped<EntityTestApi.Middleware.CustomLoggingMiddleware>();
 builder.Services.AddScoped<GlobalExceptionHandlerMiddleware>(); // Register exception handler
 
+// Register ProductCache as singleton
+builder.Services.AddSingleton<EntityTestApi.Services.IProductCache, EntityTestApi.Services.ProductCache>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 // Global exception handler - MUST be first middleware
-app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>(); // Classic IMiddleware approach
+// app.UseExceptionHandler<CustomExceptionHandler>(); // Modern IExceptionHandler approach (ASP.NET Core 8+)
 
 if (app.Environment.IsDevelopment())
 {

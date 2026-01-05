@@ -20,22 +20,22 @@ services:
       retries: 3
 
   # .NET API
-  entitytest-api:
-    build:
-      context: ./EntityTestApi
-      dockerfile: Dockerfile
-    container_name: entitytest-api
-    depends_on:
-      sqlserver:
-        condition: service_healthy
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=EntityTestDb;User Id=SA;Password=Test@2011;TrustServerCertificate=True;"
-    ports:
-      - "5274:5274"
-    networks:
-      - entitytest-network
-    restart: unless-stopped
+  # entitytest-api:
+  #   build:
+  #     context: ./EntityTestApi
+  #     dockerfile: Dockerfile
+  #   container_name: entitytest-api
+  #   depends_on:
+  #     sqlserver:
+  #       condition: service_healthy
+  #   environment:
+  #     ASPNETCORE_ENVIRONMENT: Development
+  #     ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=EntityTestDb;User Id=SA;Password=Test@2011;TrustServerCertificate=True;"
+  #   ports:
+  #     - "5274:5274"
+  #   networks:
+  #     - entitytest-network
+  #   restart: unless-stopped
 
 volumes:
   sqlserver-data:

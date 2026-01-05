@@ -1,82 +1,113 @@
 
 # EntityTest
-covers most of the .net concepts
-=======
+
 # EntityTest API — .NET 10 Web API with Entity Framework Core & SQL Server
 
-A complete ASP.NET Core Web API project demonstrating Entity Framework Core integration with SQL Server, including database migrations, CRUD operations, and seed data.
+A modern ASP.NET Core Web API project demonstrating advanced .NET concepts:
+- Entity Framework Core (with SQL Server)
+- Database migrations & seeding
+- Categories & ProductDetails (relations)
+- RowVersion concurrency (optimistic locking)
+- DTOs for API responses
+- Global exception handling (middleware & IExceptionHandler)
+- In-memory caching
+- Content negotiation (JSON/XML)
+- Docker Compose for local dev
+- Multiple test projects (xUnit, NUnit, MSTest)
+- Postman/HTTP integration tests
 
 ## Project Structure
 
 ```
 EntityTestApi/
 ├── Controllers/
-│   └── ProductsController.cs       # REST API endpoints (CRUD)
+│   ├── ProductsController.cs       # REST API endpoints (CRUD, error, concurrency)
+│   └── ErrorController.cs          # Global error endpoint
 ├── Data/
-│   ├── ApplicationDbContext.cs     # EF Core DbContext
+│   ├── ApplicationDbContext.cs     # EF Core DbContext (Products, Categories, ProductDetails)
 │   ├── ApplicationDbContextFactory.cs # Design-time factory for migrations
+│   ├── SeedEmployees.sql           # SQL seed script (departments, employees)
 │   └── Migrations/                 # EF Core migration files
+├── Exceptions/
+│   └── CustomExceptions.cs         # NotFound, Validation, Conflict, BusinessRule
+├── Middleware/
+│   ├── CustomExceptionHandler.cs   # IExceptionHandler (ASP.NET Core 8+)
+│   ├── GlobalExceptionHandlerMiddleware.cs # Classic middleware
+│   └── CustomLoggingMiddleware.cs  # Request/response logging
 ├── Models/
-│   └── Product.cs                  # Product entity model
+│   ├── Product.cs                  # Product entity (with RowVersion)
+│   ├── Category.cs                 # Category entity (1:N)
+│   ├── ProductDetail.cs            # ProductDetail entity (1:1)
+│   └── DTOs/
+│       └── ProductDto.cs           # API DTO (no circular refs)
 ├── Properties/
 │   └── launchSettings.json         # Launch configuration
 ├── appsettings.json                # App configuration & connection string
-├── Program.cs                      # App startup & DI configuration
+├── appsettings.Development.json    # Dev config
+├── Program.cs                      # App startup, DI, seeding, middleware
+├── Dockerfile                      # API Docker build
+├── docker-compose.yml              # Compose for API + SQL Server
 └── EntityTestApi.csproj            # Project file
+
+Test Projects:
+- EntityTestApi.Tests/ (xUnit)
+- EntityTestApi.NUnit.Tests/ (NUnit)
+- EntityTestApi.MSTest.Tests/ (MSTest)
+
+Integration/Manual API Tests:
+- PostmanTEST/*.http (HTTP/REST scripts for VS Code/REST Client/Postman)
 ```
 
 ## Prerequisites
 
 - **.NET 10 SDK** — [Download here](https://dotnet.microsoft.com/download/dotnet/10.0)
-- **SQL Server instance** — Running on `localhost:1433` (or adjust connection string)
-  - Default credentials: `User Id=SA; Password=Test@2011` (configured in `appsettings.json`)
+- **Docker** (for local SQL Server & API)
+- **SQL Server** — via Docker or local install (default: `localhost:1433`)
+  - Default credentials: `User Id=SA; Password=Test@2011` (see `appsettings.json`)
 
 ## Setup & Installation
 
 ### 1. Clone/Navigate to Project
 ```bash
-cd /Users/sachinsapkal/Projects/entitycore/Entitytest
+git clone <repo-url>
+cd entitycore/Entitytest
 ```
 
-### 2. Update Connection String (if needed)
-Edit `EntityTestApi/appsettings.json`:
+### 2. (Optional) Update Connection String
+Edit `EntityTestApi/appsettings.json` if not using Docker Compose:
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost,1433;Database=EntityTestDb;User Id=SA;Password=Test@2011;TrustServerCertificate=True;"
+    "DefaultConnection": "Server=localhost,1433;Database=EntityTestDb;User Id=sa;Password=Test@2011;TrustServerCertificate=True;"
   }
 }
 ```
 
-Replace:
-- `localhost,1433` with your SQL Server instance (e.g., `myserver.database.windows.net`)
-- `EntityTestDb` with your desired database name
-- `SA` and `Test@2011` with your SQL Server credentials
+### 3. Run with Docker Compose (Recommended)
+```bash
+docker-compose up --build
+```
+This will start both SQL Server and the API. The API will be available at `http://localhost:5274`.
 
-### 3. Install Dependencies
+### 4. Or Run Locally (Manual SQL Server)
 ```bash
 cd EntityTestApi
 dotnet restore
+dotnet ef database update   # Creates DB, tables, seeds data
+dotnet run
 ```
+API runs at `http://localhost:5274`.
 
-### 4. Create Database & Run Migrations
-```bash
-dotnet ef database update
-```
-
-This will:
-- Create the `EntityTestDb` database on your SQL Server instance
-- Create the `Products` table
-- Seed 5 sample products (Laptop, Monitor, Keyboard, Mouse, Headphones)
 
 ### 5. Build the Project
 ```bash
 dotnet build
 ```
 
+
 ## Running the Application
 
-Start the API server:
+Start the API server (if not using Docker Compose):
 ```bash
 dotnet run --project EntityTestApi
 ```
@@ -88,7 +119,8 @@ You should see console output:
 ✓ Sample products seeded successfully!
 ```
 
-## API Endpoints & CRUD Operations
+
+## API Endpoints & Features
 
 ### Base URL
 ```
@@ -107,11 +139,11 @@ Response:
 }
 ```
 
-### 1. GET All Products
+
+### 1. GET All Products (with Category)
 ```bash
 curl http://localhost:5274/api/products
 ```
-
 **Response:**
 ```json
 [
@@ -119,39 +151,40 @@ curl http://localhost:5274/api/products
     "id": 1,
     "name": "Laptop",
     "description": "High-performance laptop for developers",
-    "price": 1299.99
-  },
-  {
-    "id": 2,
-    "name": "Monitor",
-    "description": "4K Ultra HD Monitor 27 inch",
-    "price": 399.99
+    "price": 1299.99,
+    "categoryId": 1,
+    "categoryName": "Default"
   },
   ...
 ]
 ```
 
+
 ### 2. GET Product by ID
 ```bash
 curl http://localhost:5274/api/products/1
 ```
-
 **Response:**
 ```json
 {
   "id": 1,
   "name": "Laptop",
   "description": "High-performance laptop for developers",
-  "price": 1299.99
+  "price": 1299.99,
+  "categoryId": 1,
+  "categoryName": "Default"
 }
 ```
-
 **Error Response (404):**
 ```json
 {
-  "message": "Product with ID 999 not found"
+  "statusCode": 404,
+  "message": "Product with ID 999 not found",
+  "details": "...stack trace...",
+  "timestamp": "..."
 }
 ```
+
 
 ### 3. CREATE Product (POST)
 ```bash
@@ -163,59 +196,87 @@ curl -X POST http://localhost:5274/api/products \
     "price": 19.99
   }'
 ```
-
 **Response (201 Created):**
 ```json
 {
   "id": 6,
   "name": "USB-C Cable",
   "description": "High-speed USB-C cable",
-  "price": 19.99
+  "price": 19.99,
+  "categoryId": 1,
+  "categoryName": "Default"
 }
 ```
 
-### 4. UPDATE Product (PUT)
+
+### 4. UPDATE Product (PUT, with RowVersion for concurrency)
 ```bash
 curl -X PUT http://localhost:5274/api/products/1 \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Gaming Laptop",
     "description": "High-performance gaming laptop",
-    "price": 1599.99
+    "price": 1599.99,
+    "rowVersion": "AAAAAAAAVfc="
   }'
 ```
-
 **Response (200 OK):**
 ```json
 {
   "id": 1,
   "name": "Gaming Laptop",
   "description": "High-performance gaming laptop",
-  "price": 1599.99
+  "price": 1599.99,
+  "categoryId": 1,
+  "categoryName": "Default"
 }
 ```
+**Concurrency Error (409):**
+```json
+{
+  "message": "The record you attempted to edit was modified by another user after you got the original value. The edit operation was canceled."
+}
+```
+
 
 ### 5. DELETE Product
 ```bash
 curl -X DELETE http://localhost:5274/api/products/1
 ```
-
 **Response (204 No Content)** — No body returned, just success status.
+
 
 ## Database Details
 
 **Database Name:** `EntityTestDb`
 
-**Table:** `Products`
+**Tables:**
 
-| Column | Type | Nullable | Notes |
-|--------|------|----------|-------|
-| Id | int | NO | Primary Key, Identity |
-| Name | nvarchar(200) | NO | Required, max 200 chars |
-| Description | nvarchar(max) | YES | Optional |
-| Price | decimal(18,2) | NO | Currency format |
+### Products
+| Column      | Type            | Nullable | Notes                        |
+|-------------|-----------------|----------|------------------------------|
+| Id          | int             | NO       | Primary Key, Identity        |
+| Name        | nvarchar(200)   | NO       | Required, max 200 chars      |
+| Description | nvarchar(max)   | YES      | Optional                     |
+| Price       | decimal(18,2)   | NO       | Currency format              |
+| CategoryId  | int             | NO       | FK to Categories, default 1  |
+| RowVersion  | rowversion      | NO       | For concurrency checks       |
 
-## Managing Migrations
+### Categories
+| Column | Type          | Nullable | Notes                 |
+|--------|---------------|----------|-----------------------|
+| Id     | int           | NO       | Primary Key           |
+| Name   | nvarchar(100) | NO       | Required, unique      |
+
+### ProductDetails
+| Column    | Type          | Nullable | Notes                |
+|-----------|---------------|----------|----------------------|
+| Id        | int           | NO       | Primary Key          |
+| Details   | nvarchar(max) | NO       |                      |
+| ProductId | int           | NO       | 1:1 with Product     |
+
+
+## Managing Migrations & Seeding
 
 ### Create a New Migration
 ```bash
@@ -243,31 +304,46 @@ dotnet ef database update <PreviousMigrationName>
 dotnet ef migrations list
 ```
 
-## Project Architecture
 
-### Models (`Models/Product.cs`)
-- **Product** entity with properties: Id, Name, Description, Price
-- Data annotations for validation (Required, MaxLength)
-- Decimal precision configured via `OnModelCreating()`
+## Project Architecture & Features
 
-### DbContext (`Data/ApplicationDbContext.cs`)
-- Inherits from `DbContext`
-- Exposes `DbSet<Product> Products` for database operations
-- Configures entity mappings and column types
 
-### Controllers (`Controllers/ProductsController.cs`)
-- RESTful API endpoints for CRUD operations
-- Dependency injection of `ApplicationDbContext`
-- Async/await for database operations
-- Error handling with proper HTTP status codes
-- Request/Response DTOs (CreateProductRequest, UpdateProductRequest)
+### Models
+- **Product**: Id, Name, Description, Price, CategoryId, RowVersion, ProductDetail
+- **Category**: Id, Name, Products (1:N)
+- **ProductDetail**: Id, Details, ProductId (1:1)
+- **DTOs**: ProductDto (no circular refs)
 
-### Dependency Injection (`Program.cs`)
-```csharp
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddControllers();
-```
+### DbContext
+- `ApplicationDbContext` exposes DbSets for all entities
+- Configures relationships, seeding, decimal precision, rowversion
+
+### Controllers
+- `ProductsController`: CRUD, error simulation, concurrency, content negotiation (JSON/XML)
+- `ErrorController`: Global error endpoint
+
+### Middleware
+- `GlobalExceptionHandlerMiddleware`: Catches all unhandled exceptions, returns JSON error
+- `CustomExceptionHandler`: IExceptionHandler (ASP.NET Core 8+)
+- `CustomLoggingMiddleware`: Logs all requests/responses
+
+### Caching
+- In-memory caching for GET all products
+
+### Content Negotiation
+- Supports JSON and XML via Accept header or ?format=xml
+
+### Testing
+- xUnit, NUnit, MSTest projects for ProductsController
+- Postman/HTTP files for manual/integration API tests
+
+### Docker
+- Dockerfile for API
+- docker-compose.yml for API + SQL Server
+
+### Seeding
+- Products seeded on startup (dev)
+- SQL script for Employees/Departments
 
 ## Configuration Files
 
@@ -288,7 +364,8 @@ Project file with NuGet package dependencies:
 - `Microsoft.EntityFrameworkCore.SqlServer` — EF Core SQL Server provider
 - `Microsoft.EntityFrameworkCore.Design` — Design-time EF Core tools
 
-## Troubleshooting
+
+## Troubleshooting & Tips
 
 ### "Connection string not found"
 **Solution:** Ensure `appsettings.json` has the `ConnectionStrings:DefaultConnection` key with a valid connection string.
@@ -308,6 +385,7 @@ Project file with NuGet package dependencies:
 **Solution:**
 - Ensure `ApplicationDbContextFactory` is in the project for design-time factory
 - Run from the `EntityTestApi` folder: `cd EntityTestApi && dotnet ef ...`
+
 
 ## Next Steps & Improvements
 
@@ -348,14 +426,16 @@ Add global exception handling:
 app.UseExceptionHandler("/error");
 ```
 
-### 5. **Unit & Integration Tests**
-Create an xUnit test project:
-```bash
-dotnet new xunit -n EntityTestApi.Tests
-dotnet sln add EntityTestApi.Tests/EntityTestApi.Tests.csproj
-```
 
-Test CRUD operations with `WebApplicationFactory` and in-memory database.
+### 5. **Unit & Integration Tests**
+Test projects included:
+- `EntityTestApi.Tests` (xUnit)
+- `EntityTestApi.NUnit.Tests` (NUnit)
+- `EntityTestApi.MSTest.Tests` (MSTest)
+
+Test CRUD operations, error handling, and caching using in-memory database and mocks.
+
+HTTP/REST integration tests: see `PostmanTEST/*.http` for concurrency, error, and CRUD scenarios.
 
 ### 6. **API Documentation (Swagger)**
 Install Swagger packages:
@@ -392,6 +472,7 @@ modelBuilder.Entity<Product>()
     .IsUnique();
 ```
 
+
 ## Resources
 
 - [Entity Framework Core Documentation](https://learn.microsoft.com/en-us/ef/core/)
@@ -405,7 +486,8 @@ This project is open source and available under the MIT License.
 
 ---
 
+
 **Created:** November 30, 2025  
+**Last Updated:** January 2, 2026  
 **Version:** 1.0.0  
 **Target Framework:** .NET 10
->>>>>>> b74b4de (Initial Commit)
