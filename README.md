@@ -40,6 +40,12 @@ EntityTestApi/
 │   ├── ProductDetail.cs            # ProductDetail entity (1:1)
 │   └── DTOs/
 │       └── ProductDto.cs           # API DTO (no circular refs)
+
+├── CQRS/
+│   ├── Commands/
+│   │   └── CreateProductCommandHandler.cs # CQRS command & handler example
+│   └── Queries/
+│       └── GetProductsQueryHandler.cs    # CQRS query & handler example
 ├── Properties/
 │   └── launchSettings.json         # Launch configuration
 ├── appsettings.json                # App configuration & connection string
@@ -48,6 +54,42 @@ EntityTestApi/
 ├── Dockerfile                      # API Docker build
 ├── docker-compose.yml              # Compose for API + SQL Server
 └── EntityTestApi.csproj            # Project file
+## CQRS Pattern (Command Query Responsibility Segregation)
+
+This project demonstrates CQRS by separating read and write logic into dedicated handlers:
+
+- **Commands**: Write operations (e.g., create product) handled by command handlers
+- **Queries**: Read operations (e.g., get products) handled by query handlers
+
+CQRS handlers are registered in DI and can be tested via dedicated endpoints (see below).
+
+### CQRS Endpoints
+
+#### 1. Create Product (CQRS)
+```bash
+curl -X POST http://localhost:5274/api/products/cqrs \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "CQRS Product",
+    "price": 99.99
+  }'
+```
+**Response:**
+```json
+{
+  "message": "Product creation command handled (CQRS pattern)."
+}
+```
+
+#### 2. Get Products (CQRS)
+```bash
+curl http://localhost:5274/api/products/cqrs
+```
+**Response:**
+```json
+["Product1", "Product2"]
+```
+
 
 Test Projects:
 - EntityTestApi.Tests/ (xUnit)
@@ -488,6 +530,6 @@ This project is open source and available under the MIT License.
 
 
 **Created:** November 30, 2025  
-**Last Updated:** January 2, 2026  
+**Last Updated:** January 4, 2026
 **Version:** 1.0.0  
 **Target Framework:** .NET 10
