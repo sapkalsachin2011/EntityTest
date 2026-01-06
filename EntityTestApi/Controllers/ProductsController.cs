@@ -29,8 +29,7 @@ namespace EntityTestApi.Controllers
     private readonly CQRS.Queries.IQueryHandler<CQRS.Queries.GetProductsQuery, IEnumerable<string>> _getProductsQueryHandler;
 
 
-        public ProductsController(ApplicationDbContext context, ILogger<ProductsController> logger, IMemoryCache memoryCache)
-        : this(context, logger, memoryCache, null, null) { }
+
 
         public ProductsController(
             ApplicationDbContext context,

@@ -13,6 +13,7 @@ namespace EntityTestApi.Data
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<Category> Categories { get; set; } = null!;
         public DbSet<ProductDetail> ProductDetails { get; set; } = null!;
+        public DbSet<Supplier> Suppliers { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,6 +21,12 @@ namespace EntityTestApi.Data
 
             // Seed a default category
             modelBuilder.Entity<Category>().HasData(new Category { Id = 1, Name = "Default" });
+
+            // Seed initial suppliers
+            modelBuilder.Entity<Supplier>().HasData(
+                new Supplier { Id = 1, Name = "Acme Supplies", Description = "Leading supplier of office products.", ContactEmail = "contact@acme.com" },
+                new Supplier { Id = 2, Name = "Global Tech", Description = "Electronics and IT supplier.", ContactEmail = "info@globaltech.com" }
+            );
 
             modelBuilder.Entity<Product>(entity =>
             {

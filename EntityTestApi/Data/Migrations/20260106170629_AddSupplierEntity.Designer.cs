@@ -3,6 +3,7 @@ using EntityTestApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntityTestApi.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260106170629_AddSupplierEntity")]
+    partial class AddSupplierEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,22 +133,6 @@ namespace EntityTestApi.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Suppliers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ContactEmail = "contact@acme.com",
-                            Description = "Leading supplier of office products.",
-                            Name = "Acme Supplies"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ContactEmail = "info@globaltech.com",
-                            Description = "Electronics and IT supplier.",
-                            Name = "Global Tech"
-                        });
                 });
 
             modelBuilder.Entity("EntityTestApi.Models.Product", b =>

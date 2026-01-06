@@ -23,6 +23,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 // Add services to the container.
+builder.Services.AddScoped<EntityTestApi.Data.ISupplierRepository, EntityTestApi.Data.SupplierRepository>();
+builder.Services.AddScoped<EntityTestApi.Data.IProductRepository, EntityTestApi.Data.ProductRepository>();
+builder.Services.AddScoped<EntityTestApi.Data.IUnitOfWork, EntityTestApi.Data.UnitOfWork>();
+//builder.Services.AddScoped<EntityTestApi.Data.IProductRepository, EntityTestApi.Data.ProductRepository>();
+//builder.Services.AddScoped(typeof(EntityTestApi.Data.IRepository<>), typeof(EntityTestApi.Data.Repository<>));
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
