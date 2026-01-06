@@ -1,15 +1,4 @@
-### ExternalApiService Usage Diagram
 
-```mermaid
-flowchart TD
-  A[Controller] -- injects --> B[ExternalApiService]
-  B -- uses --> C[IHttpClientFactory (DI)]
-  B -- or --> D[Direct HttpClient (static)]
-  C -- manages --> E[HttpClient]
-  D -- creates --> F[HttpClient]
-  B -- calls --> G[External API]
-  D -- calls --> G
-```
 
 **Legend:**
 - The controller injects ExternalApiService (via DI).
