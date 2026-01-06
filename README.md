@@ -1,3 +1,52 @@
+### ExternalApiService Usage Diagram
+
+```mermaid
+flowchart TD
+  A[Controller] -- injects --> B[ExternalApiService]
+  B -- uses --> C[IHttpClientFactory (DI)]
+  B -- or --> D[Direct HttpClient (static)]
+  C -- manages --> E[HttpClient]
+  D -- creates --> F[HttpClient]
+  B -- calls --> G[External API]
+  D -- calls --> G
+```
+
+**Legend:**
+- The controller injects ExternalApiService (via DI).
+- ExternalApiService can use either IHttpClientFactory (recommended, managed) or direct HttpClient (static, not recommended for production).
+- Both approaches ultimately call the external API, but only the factory approach is managed and pooled by ASP.NET Core.
+## External API Integration & Comparison
+
+This project demonstrates two approaches for making HTTP requests to external APIs:
+
+- **IHttpClientFactory (recommended):**
+  - Managed by ASP.NET Core for connection pooling and DI.
+  - Used in `ExternalApiService.GetDataFromExternalApiAsync()`.
+- **Direct HttpClient (not recommended for production):**
+  - Manual instantiation, can cause socket exhaustion if misused.
+  - Used in `ExternalApiService.GetDataWithDirectHttpClientAsync()`.
+
+### Test & Compare Both Methods
+
+Use the provided endpoint to compare both approaches:
+
+```
+GET http://localhost:5274/api/ExternalApiTest/externalapi/compare?url=https://jsonplaceholder.typicode.com/todos/1
+```
+
+**Sample Postman/REST Client file:**
+
+See `PostmanTEST/ExternalApiComparison.http` for a ready-to-use test request.
+
+**Response Example:**
+```json
+{
+  "IHttpClientFactory": "{...external API response...}",
+  "DirectHttpClient": "{...external API response...}"
+}
+```
+
+Both results should be the same, but IHttpClientFactory is preferred for real-world applications.
 
 # EntityTest
 
@@ -22,7 +71,8 @@ A modern ASP.NET Core Web API project demonstrating advanced .NET concepts:
 EntityTestApi/
 ├── Controllers/
 │   ├── ProductsController.cs       # REST API endpoints (CRUD, error, concurrency)
-│   └── ErrorController.cs          # Global error endpoint
+│   ├── ErrorController.cs          # Global error endpoint
+│   └── ExternalApiTestController.cs # Compare IHttpClientFactory vs direct HttpClient
 ├── Data/
 │   ├── ApplicationDbContext.cs     # EF Core DbContext (Products, Categories, ProductDetails)
 │   ├── ApplicationDbContextFactory.cs # Design-time factory for migrations

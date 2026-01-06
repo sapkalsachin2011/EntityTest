@@ -1,0 +1,8 @@
+### Compare IHttpClientFactory and Direct HttpClient
+
+# @name CompareHttpClientMethods
+GET http://localhost:5274/api/ExternalApiTest/externalapi/compare?url=https://jsonplaceholder.typicode.com/todos/1
+Accept: application/json
+
+###
+# You can change the URL parameter to test other endpoints as needed.
