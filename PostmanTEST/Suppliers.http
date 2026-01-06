@@ -1,0 +1,31 @@
+### Get all suppliers
+GET http://localhost:5274/api/suppliers
+Accept: application/json
+
+### Get supplier by ID
+GET http://localhost:5274/api/suppliers/1
+Accept: application/json
+
+### Create a new supplier
+POST http://localhost:5274/api/suppliers
+Content-Type: application/json
+
+{
+  "name": "New Supplier",
+  "description": "Test supplier for API.",
+  "contactEmail": "test@supplier.com"
+}   
+
+### Update a supplier
+PUT http://localhost:5274/api/suppliers/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "Acme Supplies Updated",
+  "description": "Updated description.",
+  "contactEmail": "newcontact@acme.com"
+}
+
+### Delete a supplier
+DELETE http://localhost:5274/api/suppliers/2

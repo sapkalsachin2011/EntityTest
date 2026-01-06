@@ -54,16 +54,59 @@ A modern ASP.NET Core Web API project demonstrating advanced .NET concepts:
 - Multiple test projects (xUnit, NUnit, MSTest)
 - Postman/HTTP integration tests
 
+
+## Repository & Unit of Work Patterns
+
+This project demonstrates both the Repository and Unit of Work patterns for data access abstraction and transactional consistency.
+
+### Repository Pattern
+- Generic `IRepository<T>` and `Repository<T>` provide CRUD operations for any entity.
+- Entity-specific repositories (e.g., `ISupplierRepository`, `IProductRepository`) add custom queries.
+- Example: `SuppliersController` uses `ISupplierRepository` for CRUD on Supplier.
+
+### Unit of Work Pattern
+- `IUnitOfWork` exposes multiple repositories (e.g., `Suppliers`, `Products`) and a single `CompleteAsync()` method to commit all changes atomically.
+- Example: `SupplierUowController` demonstrates CRUD and an atomic endpoint that creates both a Supplier and a Product in one transaction.
+
+#### Atomic Transaction Example
+POST `/api/supplieruow/atomic` with:
+```json
+{
+  "supplierName": "Atomic Supplier",
+  "supplierDescription": "Created with product in one transaction.",
+  "supplierEmail": "atomic@supplier.com",
+  "productName": "Atomic Product",
+  "productDescription": "Created atomically with supplier.",
+  "productPrice": 123.45
+}
+```
+Both records are saved only if both succeed.
+
+### Test Files
+- `PostmanTEST/Suppliers.http` — CRUD for Supplier (Repository pattern)
+- `PostmanTEST/SuppliersUow.http` — CRUD for Supplier (Unit of Work)
+- `PostmanTEST/SuppliersUowAtomic.http` — Atomic Supplier+Product creation
+
 ## Project Structure
 
 ```
 EntityTestApi/
 ├── Controllers/
 │   ├── ProductsController.cs       # REST API endpoints (CRUD, error, concurrency)
+│   ├── SuppliersController.cs      # CRUD for Supplier (Repository pattern)
+│   ├── SupplierUowController.cs    # CRUD & atomic for Supplier/Product (Unit of Work)
 │   ├── ErrorController.cs          # Global error endpoint
 │   └── ExternalApiTestController.cs # Compare IHttpClientFactory vs direct HttpClient
 ├── Data/
-│   ├── ApplicationDbContext.cs     # EF Core DbContext (Products, Categories, ProductDetails)
+│   ├── ApplicationDbContext.cs     # EF Core DbContext (Products, Suppliers, Categories, ProductDetails)
+│   ├── IRepository.cs              # Generic repository interface
+│   ├── Repository.cs               # Generic repository implementation
+│   ├── ISupplierRepository.cs      # Supplier-specific repository
+│   ├── SupplierRepository.cs       # Supplier repository implementation
+│   ├── IProductRepository.cs       # Product-specific repository
+│   ├── ProductRepository.cs        # Product repository implementation
+│   ├── IUnitOfWork.cs              # Unit of Work interface
+│   ├── UnitOfWork.cs               # Unit of Work implementation
 │   ├── ApplicationDbContextFactory.cs # Design-time factory for migrations
 │   ├── SeedEmployees.sql           # SQL seed script (departments, employees)
 │   └── Migrations/                 # EF Core migration files
@@ -75,6 +118,7 @@ EntityTestApi/
 │   └── CustomLoggingMiddleware.cs  # Request/response logging
 ├── Models/
 │   ├── Product.cs                  # Product entity (with RowVersion)
+│   ├── Supplier.cs                 # Supplier entity
 │   ├── Category.cs                 # Category entity (1:N)
 │   ├── ProductDetail.cs            # ProductDetail entity (1:1)
 │   └── DTOs/

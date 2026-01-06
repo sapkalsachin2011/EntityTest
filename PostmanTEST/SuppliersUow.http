@@ -1,0 +1,31 @@
+### Get all suppliers (Unit of Work)
+GET http://localhost:5000/api/supplieruow
+Accept: application/json
+
+### Get supplier by ID (Unit of Work)
+GET http://localhost:5000/api/supplieruow/1
+Accept: application/json
+
+### Create a new supplier (Unit of Work)
+POST http://localhost:5000/api/supplieruow
+Content-Type: application/json
+
+{
+  "name": "UOW Supplier",
+  "description": "Created via Unit of Work.",
+  "contactEmail": "uow@supplier.com"
+}
+
+### Update a supplier (Unit of Work)
+PUT http://localhost:5000/api/supplieruow/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "UOW Supplier Updated",
+  "description": "Updated via Unit of Work.",
+  "contactEmail": "uowupdated@supplier.com"
+}
+
+### Delete a supplier (Unit of Work)
+DELETE http://localhost:5000/api/supplieruow/2

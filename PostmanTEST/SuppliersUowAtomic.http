@@ -1,0 +1,12 @@
+### Atomic create Supplier and Product
+POST http://localhost:5274/api/supplieruow/atomic
+Content-Type: application/json
+
+{
+  "supplierName": "Atomic Supplier",
+  "supplierDescription": "Created with product in one transaction.",
+  "supplierEmail": "atomic@supplier.com",
+  "productName": "Atomic Product",
+  "productDescription": "Created atomically with supplier.",
+  "productPrice": 123.45
+}
