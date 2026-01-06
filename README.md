@@ -377,6 +377,8 @@ curl -X DELETE http://localhost:5274/api/products/1
 
 **Tables:**
 
+
+
 ### Products
 | Column      | Type            | Nullable | Notes                        |
 |-------------|-----------------|----------|------------------------------|
@@ -386,6 +388,35 @@ curl -X DELETE http://localhost:5274/api/products/1
 | Price       | decimal(18,2)   | NO       | Currency format              |
 | CategoryId  | int             | NO       | FK to Categories, default 1  |
 | RowVersion  | rowversion      | NO       | For concurrency checks       |
+
+### Suppliers
+| Column        | Type            | Nullable | Notes                        |
+|---------------|-----------------|----------|------------------------------|
+| Id            | int             | NO       | Primary Key, Identity        |
+| Name          | nvarchar(200)   | NO       | Required, max 200 chars      |
+| Description   | nvarchar(1000)  | YES      | Optional                     |
+| ContactEmail  | nvarchar(100)   | YES      | Optional                     |
+
+### Categories
+| Column | Type          | Nullable | Notes                 |
+|--------|---------------|----------|-----------------------|
+| Id     | int           | NO       | Primary Key           |
+| Name   | nvarchar(100) | NO       | Required, unique      |
+
+### ProductDetails
+| Column    | Type          | Nullable | Notes                |
+|-----------|---------------|----------|----------------------|
+| Id        | int           | NO       | Primary Key          |
+| Details   | nvarchar(max) | NO       |                      |
+| ProductId | int           | NO       | 1:1 with Product     |
+
+### Suppliers
+| Column        | Type            | Nullable | Notes                        |
+|---------------|-----------------|----------|------------------------------|
+| Id            | int             | NO       | Primary Key, Identity        |
+| Name          | nvarchar(200)   | NO       | Required, max 200 chars      |
+| Description   | nvarchar(1000)  | YES      | Optional                     |
+| ContactEmail  | nvarchar(100)   | YES      | Optional                     |
 
 ### Categories
 | Column | Type          | Nullable | Notes                 |
