@@ -93,6 +93,7 @@ namespace EntityTestApi.Controllers
             {
                 // Fetch products and map to DTOs - No circular references
                 productDtos = await _context.Products
+                    .AsNoTracking()
                     .Include(p => p.Category)
                     .Select(p => new ProductDto
                     {

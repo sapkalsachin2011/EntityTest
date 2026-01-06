@@ -26,6 +26,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+// Register ExternalApiService with IHttpClientFactory
+builder.Services.AddHttpClient<EntityTestApi.Services.ExternalApiService>();
+
 // Register CQRS command and query handlers
 builder.Services.AddScoped<EntityTestApi.CQRS.Commands.ICommandHandler<EntityTestApi.CQRS.Commands.CreateProductCommand>, EntityTestApi.CQRS.Commands.CreateProductCommandHandler>();
 builder.Services.AddScoped<EntityTestApi.CQRS.Queries.IQueryHandler<EntityTestApi.CQRS.Queries.GetProductsQuery, IEnumerable<string>>, EntityTestApi.CQRS.Queries.GetProductsQueryHandler>();
