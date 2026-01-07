@@ -3,8 +3,18 @@ using EntityTestApi.Data;
 using Microsoft.IdentityModel.Tokens;
 using EntityTestApi.Middleware;
 using Microsoft.AspNetCore.Diagnostics;
+using System;
+using System.IO;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add log4net as a logging provider
+builder.Logging.ClearProviders();
+var log4netConfigPath = Path.Combine(AppContext.BaseDirectory, "log4net.config");
+builder.Logging.AddLog4Net(log4netConfigPath);
+
+// Enable log4net internal debugging for troubleshooting
+log4net.Util.LogLog.InternalDebugging = true;
 
 // Configure DbContext (uses ConnectionStrings:DefaultConnection from appsettings.json)
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -61,6 +71,24 @@ builder.Services.AddScoped<GlobalExceptionHandlerMiddleware>(); // Register exce
 builder.Services.AddSingleton<EntityTestApi.Services.IProductCache, EntityTestApi.Services.ProductCache>();
 
 var app = builder.Build();
+
+// Ensure Log directory exists for log4net file appender
+var logDir = Path.Combine(AppContext.BaseDirectory, "Log");
+if (!Directory.Exists(logDir))
+{
+    Directory.CreateDirectory(logDir);
+}
+
+// Ensure Supplierlog.txt file exists (create if missing)
+var logFile = Path.Combine(logDir, "Supplierlog.txt");
+if (!File.Exists(logFile))
+{
+    File.Create(logFile).Dispose(); // Create and close the file
+}
+
+// Print log directory and file path to console
+Console.WriteLine($"Log directory: {logDir}");
+Console.WriteLine($"Log file: {logFile}");
 
 // Configure the HTTP request pipeline.
 // Global exception handler - MUST be first middleware

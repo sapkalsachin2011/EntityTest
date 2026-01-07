@@ -1,0 +1,72 @@
+2026-01-06 13:04:20,943 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (39ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-06 13:04:20,979 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-06 13:04:20,979 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-06 13:04:20,979 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-06 13:04:20,979 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-06 13:04:59,143 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-06 13:04:59,146 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-06 13:04:59,147 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-06 13:04:59,147 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-06 13:04:59,147 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-06 13:04:59,170 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-06 13:04:59,294 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (45ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-06 13:04:59,301 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products from database and caching
+2026-01-06 13:04:59,310 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products
+2026-01-06 13:04:59,311 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-06 13:04:59,311 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-06 13:04:59,311 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-06 13:09:10,429 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-06 13:09:10,433 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-06 13:09:10,434 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-06 13:09:10,435 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request POST /api/supplieruow/atomic
+2026-01-06 13:09:10,630 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (37ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 200), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Size = 100), @p4='?' (Size = 1000), @p5='?' (Size = 200)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Products] ([Description], [Name], [Price])
+OUTPUT INSERTED.[Id], INSERTED.[CategoryId], INSERTED.[RowVersion]
+VALUES (@p0, @p1, @p2);
+INSERT INTO [Suppliers] ([ContactEmail], [Description], [Name])
+OUTPUT INSERTED.[Id]
+VALUES (@p3, @p4, @p5);
+2026-01-06 13:09:10,655 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for POST /api/supplieruow/atomic
+2026-01-06 13:09:10,655 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-06 13:09:10,655 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-06 13:09:10,655 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-06 13:09:29,579 [.NET Signal Handler] INFO  Microsoft.Hosting.Lifetime - Application is shutting down...
+2026-01-06 13:09:48,623 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-06 13:09:48,663 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-06 13:09:48,663 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-06 13:09:48,663 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-06 13:09:48,663 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-06 13:10:05,744 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-06 13:10:05,747 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-06 13:10:05,748 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-06 13:10:05,748 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-06 13:10:05,748 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request POST /api/supplieruow/atomic
+2026-01-06 13:10:05,909 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (18ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 200), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Size = 100), @p4='?' (Size = 1000), @p5='?' (Size = 200)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Products] ([Description], [Name], [Price])
+OUTPUT INSERTED.[Id], INSERTED.[CategoryId], INSERTED.[RowVersion]
+VALUES (@p0, @p1, @p2);
+INSERT INTO [Suppliers] ([ContactEmail], [Description], [Name])
+OUTPUT INSERTED.[Id]
+VALUES (@p3, @p4, @p5);
+2026-01-06 13:10:05,943 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for POST /api/supplieruow/atomic
+2026-01-06 13:10:05,944 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-06 13:10:05,944 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-06 13:10:05,944 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-06 13:12:31,184 [.NET Signal Handler] INFO  Microsoft.Hosting.Lifetime - Application is shutting down...

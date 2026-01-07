@@ -12,7 +12,8 @@
           "Microsoft.AspNetCore.OpenApi": "10.0.0-rc.2.25502.107",
           "Microsoft.EntityFrameworkCore.Design": "10.0.1",
           "Microsoft.EntityFrameworkCore.Proxies": "10.0.1",
-          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.1"
+          "Microsoft.EntityFrameworkCore.SqlServer": "10.0.1",
+          "Microsoft.Extensions.Logging.Log4Net.AspNetCore": "8.0.0"
         },
         "runtime": {
           "EntityTestApi.dll": {}
@@ -197,6 +198,17 @@
             "rid": "win-x86",
             "assetType": "native",
             "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "log4net/2.0.15": {
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "9.0.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/log4net.dll": {
+            "assemblyVersion": "2.0.15.0",
+            "fileVersion": "2.0.15.0"
           }
         }
       },
@@ -737,6 +749,17 @@
           }
         }
       },
+      "Microsoft.Extensions.Logging.Log4Net.AspNetCore/8.0.0": {
+        "dependencies": {
+          "log4net": "2.0.15"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.0.0"
+          }
+        }
+      },
       "Microsoft.Identity.Client/4.73.1": {
         "dependencies": {
           "Microsoft.IdentityModel.Abstractions": "7.7.1"
@@ -1089,6 +1112,13 @@
       "path": "librdkafka.redist/2.4.0",
       "hashPath": "librdkafka.redist.2.4.0.nupkg.sha512"
     },
+    "log4net/2.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GahnO9ZgFka+xYcFwAfIFjW+k86P2nxFoaEpH6t3v4hiGj7tv2ksVZphxCVIHmJxoySS0HeU3dgCW+bSCcfD0A==",
+      "path": "log4net/2.0.15",
+      "hashPath": "log4net.2.0.15.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.OpenApi/10.0.0-rc.2.25502.107": {
       "type": "package",
       "serviceable": true,
@@ -1235,6 +1265,13 @@
       "sha512": "sha512-IiWPd4j8JLNjSkyXl5hvJwX2ZENDVQVPDHYgZmYdw8+YkY2xp9iQt0vjdnAQZLpo/ipeW1xgOqfSBEnivKWPYQ==",
       "path": "microsoft.extensions.dependencymodel/10.0.1",
       "hashPath": "microsoft.extensions.dependencymodel.10.0.1.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Log4Net.AspNetCore/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NShPLGSM/PBGJIOK/cmlh3a+QlrtCLcSpb+vfqwxRmZK38Cy4prsOjuODpAIvqWL93zt9PZOTcHOVqyaQRNuEg==",
+      "path": "microsoft.extensions.logging.log4net.aspnetcore/8.0.0",
+      "hashPath": "microsoft.extensions.logging.log4net.aspnetcore.8.0.0.nupkg.sha512"
     },
     "Microsoft.Identity.Client/4.73.1": {
       "type": "package",

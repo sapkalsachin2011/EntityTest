@@ -3,11 +3,11 @@ GET http://localhost:5000/api/supplieruow
 Accept: application/json
 
 ### Get supplier by ID (Unit of Work)
-GET http://localhost:5000/api/supplieruow/1
+GET http://localhost:5274/api/supplieruow/1
 Accept: application/json
 
 ### Create a new supplier (Unit of Work)
-POST http://localhost:5000/api/supplieruow
+POST http://localhost:5274/api/supplieruow
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ### Update a supplier (Unit of Work)
-PUT http://localhost:5000/api/supplieruow/1
+PUT http://localhost:5274/api/supplieruow/1
 Content-Type: application/json
 
 {

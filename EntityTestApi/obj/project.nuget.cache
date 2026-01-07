@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BkgowW4DA+U=",
+  "dgSpecHash": "LRTSyQERmWM=",
   "success": true,
   "projectFilePath": "/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/EntityTestApi.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "/Users/sachinsapkal/.nuget/packages/confluent.kafka/2.4.0/confluent.kafka.2.4.0.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/librdkafka.redist/2.4.0/librdkafka.redist.2.4.0.nupkg.sha512",
+    "/Users/sachinsapkal/.nuget/packages/log4net/2.0.15/log4net.2.0.15.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/microsoft.aspnetcore.openapi/10.0.0-rc.2.25502.107/microsoft.aspnetcore.openapi.10.0.0-rc.2.25502.107.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/microsoft.bcl.asyncinterfaces/8.0.0/microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/microsoft.bcl.cryptography/9.0.4/microsoft.bcl.cryptography.9.0.4.nupkg.sha512",
@@ -33,6 +34,7 @@
     "/Users/sachinsapkal/.nuget/packages/microsoft.entityframeworkcore.relational/10.0.1/microsoft.entityframeworkcore.relational.10.0.1.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/microsoft.entityframeworkcore.sqlserver/10.0.1/microsoft.entityframeworkcore.sqlserver.10.0.1.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/microsoft.extensions.dependencymodel/10.0.1/microsoft.extensions.dependencymodel.10.0.1.nupkg.sha512",
+    "/Users/sachinsapkal/.nuget/packages/microsoft.extensions.logging.log4net.aspnetcore/8.0.0/microsoft.extensions.logging.log4net.aspnetcore.8.0.0.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/microsoft.identity.client/4.73.1/microsoft.identity.client.4.73.1.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/microsoft.identity.client.extensions.msal/4.73.1/microsoft.identity.client.extensions.msal.4.73.1.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/microsoft.identitymodel.abstractions/7.7.1/microsoft.identitymodel.abstractions.7.7.1.nupkg.sha512",
