@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EntityTestApi.Data;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Caching.Memory;
 using System.ComponentModel.DataAnnotations;
 using EntityTestApi.Exceptions;
 using ValidationException = EntityTestApi.Exceptions.ValidationException; // Resolve ambiguity
+using Microsoft.Extensions.Caching.Distributed;
 
 
 namespace EntityTestApi.Controllers
@@ -22,28 +24,115 @@ namespace EntityTestApi.Controllers
         private readonly ApplicationDbContext _context;
         private readonly ILogger<ProductsController> _logger;
         private readonly IMemoryCache _memoryCache;
+        private readonly IDistributedCache _distributedCache;
         private const string ALL_PRODUCTS_CACHE_KEY = "all_products";
+        private const string ALL_PRODUCTS_REDIS_CACHE_KEY = "all_products_redis";
 
-    // CQRS handlers
-    private readonly CQRS.Commands.ICommandHandler<CQRS.Commands.CreateProductCommand> _createProductCommandHandler;
-    private readonly CQRS.Queries.IQueryHandler<CQRS.Queries.GetProductsQuery, IEnumerable<string>> _getProductsQueryHandler;
-
-
-
+        // CQRS handlers
+        private readonly CQRS.Commands.ICommandHandler<CQRS.Commands.CreateProductCommand> _createProductCommandHandler;
+        private readonly CQRS.Queries.IQueryHandler<CQRS.Queries.GetProductsQuery, IEnumerable<string>> _getProductsQueryHandler;
 
         public ProductsController(
             ApplicationDbContext context,
             ILogger<ProductsController> logger,
             IMemoryCache memoryCache,
+            IDistributedCache distributedCache,
             CQRS.Commands.ICommandHandler<CQRS.Commands.CreateProductCommand> createProductCommandHandler,
             CQRS.Queries.IQueryHandler<CQRS.Queries.GetProductsQuery, IEnumerable<string>> getProductsQueryHandler)
         {
             _context = context;
             _logger = logger;
             _memoryCache = memoryCache;
+            _distributedCache = distributedCache;
             _createProductCommandHandler = createProductCommandHandler;
             _getProductsQueryHandler = getProductsQueryHandler;
         }
+
+        /// <summary>
+        /// Test multiple LINQ queries on products
+        /// </summary>
+        [HttpGet("linqtest")]
+        public async Task<IActionResult> LinqTest()
+        {
+            var products = await _context.Products.ToListAsync();
+
+            // Example LINQ queries
+            var expensiveProducts = products.Where(p => p.Price > 1000).ToList();
+            var sortedByName = products.OrderBy(p => p.Name).ToList();
+            var groupedByPrice = products.GroupBy(p => p.Price).Select(g => new { Price = g.Key, Count = g.Count() }).ToList();
+            var namesOnly = products.Select(p => p.Name).ToList();
+            var firstProduct = products.FirstOrDefault();
+            var productCount = products.Count();
+
+            return Ok(new
+            {
+                ExpensiveProducts = expensiveProducts,
+                SortedByName = sortedByName,
+                GroupedByPrice = groupedByPrice,
+                NamesOnly = namesOnly,
+                FirstProduct = firstProduct,
+                ProductCount = productCount
+            });
+        }
+                /// <summary>
+                /// Get all products using distributed Redis cache
+                /// </summary>
+                [HttpGet("dcaching")]
+                [Produces("application/json", "application/xml", "text/xml")]
+                public async Task<ActionResult<IEnumerable<ProductDto>>> GetProductsDcaching([FromQuery] string? format = null)
+                {
+                    _logger.LogInformation($"Fetching all products (Redis), Accept: {Request.Headers.Accept}, Format: {format}");
+                    List<ProductDto>? productDtos = null;
+                    var cachedProducts = await _distributedCache.GetStringAsync(ALL_PRODUCTS_REDIS_CACHE_KEY);
+                    if (!string.IsNullOrEmpty(cachedProducts))
+                    {
+                        _logger.LogInformation("✓ Returning all products from Redis distributed cache");
+                        productDtos = System.Text.Json.JsonSerializer.Deserialize<List<ProductDto>>(cachedProducts);
+                    }
+                    else
+                    {
+                        productDtos = await _context.Products
+                            .AsNoTracking()
+                            .Include(p => p.Category)
+                            .Select(p => new ProductDto
+                            {
+                                Id = p.Id,
+                                Name = p.Name,
+                                Description = p.Description,
+                                Price = p.Price,
+                                CategoryId = p.CategoryId,
+                                CategoryName = p.Category.Name
+                            })
+                            .ToListAsync();
+                        var options = new DistributedCacheEntryOptions
+                        {
+                            AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5),
+                            SlidingExpiration = TimeSpan.FromMinutes(2)
+                        };
+                        var serialized = System.Text.Json.JsonSerializer.Serialize(productDtos);
+                        await _distributedCache.SetStringAsync(ALL_PRODUCTS_REDIS_CACHE_KEY, serialized, options);
+                        _logger.LogInformation("Fetching all products from database and caching in Redis");
+                    }
+                    if (!string.IsNullOrEmpty(format))
+                    {
+                        switch (format.ToLower())
+                        {
+                            case "xml":
+                                return new ObjectResult(productDtos)
+                                {
+                                    ContentTypes = { "application/xml", "text/xml" }
+                                };
+                            case "json":
+                                return new ObjectResult(productDtos)
+                                {
+                                    ContentTypes = { "application/json" }
+                                };
+                            default:
+                                return StatusCode(406, new { message = $"Format '{format}' not supported. Use 'json' or 'xml'." });
+                        }
+                    }
+                    return Ok(productDtos);
+                }
         /// <summary>
         /// CQRS: Create a new product using command handler
         /// </summary>

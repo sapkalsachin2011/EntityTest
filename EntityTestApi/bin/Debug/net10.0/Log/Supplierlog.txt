@@ -523,3 +523,229 @@ FROM [Suppliers] AS [s]
 2026-01-06 13:54:18,137 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
 2026-01-06 13:54:18,137 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
 2026-01-06 13:57:32,858 [.NET Signal Handler] INFO  Microsoft.Hosting.Lifetime - Application is shutting down...
+2026-01-07 09:12:22,116 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (96ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 09:12:22,190 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-07 09:12:22,190 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-07 09:12:22,190 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-07 09:12:22,190 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-07 09:12:35,879 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-07 09:12:35,883 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 09:12:35,883 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 09:12:35,884 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 09:12:35,886 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-07 09:12:50,601 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-07 09:13:49,593 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (255ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-07 09:15:53,222 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products from database and caching
+2026-01-07 09:16:04,795 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products
+2026-01-07 09:16:04,796 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-07 09:16:04,796 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-07 09:16:04,796 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-07 09:23:26,608 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 09:23:26,609 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 09:23:26,609 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 09:23:26,609 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-07 09:23:28,882 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-07 09:23:55,709 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-07 09:23:56,969 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products from database and caching
+2026-01-07 09:23:56,972 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products
+2026-01-07 09:23:56,972 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-07 09:23:56,972 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-07 09:23:56,972 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-07 09:24:04,707 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 09:24:04,708 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 09:24:04,708 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 09:24:04,709 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-07 09:24:06,590 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-07 09:24:11,183 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - ✓ Returning all products from IMemoryCache
+2026-01-07 10:47:25,744 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (42ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 10:47:25,782 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-07 10:47:25,783 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-07 10:47:25,784 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-07 10:47:25,784 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-07 10:49:14,052 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-07 10:49:14,057 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 10:49:14,057 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 10:49:14,057 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 10:49:14,058 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products/daching
+2026-01-07 10:49:14,099 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 400 for GET /api/products/daching
+2026-01-07 10:49:14,099 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-07 10:49:14,100 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-07 10:49:14,100 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-07 10:49:40,424 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 10:49:40,425 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 10:49:40,425 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 10:49:40,426 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products/dcaching
+2026-01-07 10:49:40,447 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products (Redis), Accept: */*, Format: 
+2026-01-07 10:49:40,453 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: Value cannot be null. (Parameter 'configuration')
+System.ArgumentNullException: Value cannot be null. (Parameter 'configuration')
+   at StackExchange.Redis.ConfigurationOptions.DoParse(String configuration, Boolean ignoreUnknown) in /_/src/StackExchange.Redis/ConfigurationOptions.cs:line 870
+   at StackExchange.Redis.ConfigurationOptions.Parse(String configuration, Boolean ignoreUnknown) in /_/src/StackExchange.Redis/ConfigurationOptions.cs:line 676
+   at StackExchange.Redis.ConfigurationOptions.Parse(String configuration) in /_/src/StackExchange.Redis/ConfigurationOptions.cs:line 666
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.GetConfiguredOptions()
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.ConnectSlowAsync(CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.GetAndRefreshAsync(String key, Boolean getData, CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.GetAsync(String key, CancellationToken token)
+   at Microsoft.Extensions.Caching.Distributed.DistributedCacheExtensions.GetStringAsync(IDistributedCache cache, String key, CancellationToken token)
+   at EntityTestApi.Controllers.ProductsController.GetProductsDcaching(String format) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Controllers/ProductsController.cs:line 60
+   at lambda_method43(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 141
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 130
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_4>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 119
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-07 10:50:24,181 [.NET Signal Handler] INFO  Microsoft.Hosting.Lifetime - Application is shutting down...
+2026-01-07 10:50:45,840 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 10:50:45,926 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-07 10:50:45,927 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-07 10:50:45,927 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-07 10:50:45,927 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-07 10:50:49,162 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-07 10:50:49,165 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 10:50:49,165 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 10:50:49,165 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 10:50:49,166 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products/dcaching
+2026-01-07 10:50:49,181 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products (Redis), Accept: */*, Format: 
+2026-01-07 10:50:55,252 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: The message timed out in the backlog attempting to send because no connection became available (5000ms) - Last Connection Exception: UnableToConnect on localhost:5003/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 0s ago, v: 2.7.27.49176, command=HMGET, timeout: 5000, inst: 0, qu: 0, qs: 0, aw: False, bw: CheckingForTimeout, last-in: 0, cur-in: 0, sync-ops: 0, async-ops: 1, serverEndpoint: localhost:5003, conn-sec: n/a, aoc: 0, mc: 1/1/0, mgr: 10 of 10 available, clientName: Sachins-MacBook-Pro(SE.Redis-v2.7.27.49176), IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=0,Free=32767,Min=10,Max=32767), POOL: (Threads=7,QueuedItems=0,CompletedItems=148,Timers=13), v: 2.7.27.49176 (Please take a look at this article for some common client-side issues that can cause timeouts: https://stackexchange.github.io/StackExchange.Redis/Timeouts)
+StackExchange.Redis.RedisConnectionException: The message timed out in the backlog attempting to send because no connection became available (5000ms) - Last Connection Exception: UnableToConnect on localhost:5003/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 0s ago, v: 2.7.27.49176, command=HMGET, timeout: 5000, inst: 0, qu: 0, qs: 0, aw: False, bw: CheckingForTimeout, last-in: 0, cur-in: 0, sync-ops: 0, async-ops: 1, serverEndpoint: localhost:5003, conn-sec: n/a, aoc: 0, mc: 1/1/0, mgr: 10 of 10 available, clientName: Sachins-MacBook-Pro(SE.Redis-v2.7.27.49176), IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=0,Free=32767,Min=10,Max=32767), POOL: (Threads=7,QueuedItems=0,CompletedItems=148,Timers=13), v: 2.7.27.49176 (Please take a look at this article for some common client-side issues that can cause timeouts: https://stackexchange.github.io/StackExchange.Redis/Timeouts)
+ ---> StackExchange.Redis.RedisConnectionException: UnableToConnect on localhost:5003/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 0s ago, v: 2.7.27.49176
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.GetAndRefreshAsync(String key, Boolean getData, CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.GetAsync(String key, CancellationToken token)
+   at Microsoft.Extensions.Caching.Distributed.DistributedCacheExtensions.GetStringAsync(IDistributedCache cache, String key, CancellationToken token)
+   at EntityTestApi.Controllers.ProductsController.GetProductsDcaching(String format) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Controllers/ProductsController.cs:line 60
+   at lambda_method35(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 141
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 130
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_4>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 119
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-07 10:51:38,197 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 10:51:38,198 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 10:51:38,198 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 10:51:38,199 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products/dcaching
+2026-01-07 10:51:38,205 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products (Redis), Accept: */*, Format: 
+2026-01-07 10:51:38,322 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (29ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-07 10:51:38,339 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products from database and caching in Redis
+2026-01-07 10:51:38,342 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products/dcaching
+2026-01-07 10:51:38,342 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-07 10:51:38,342 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-07 10:51:38,342 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-07 10:51:43,485 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 10:51:43,485 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 10:51:43,485 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 10:51:43,486 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products/dcaching
+2026-01-07 10:51:43,488 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products (Redis), Accept: */*, Format: 
+2026-01-07 10:51:43,495 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - ✓ Returning all products from Redis distributed cache
+2026-01-07 10:51:43,504 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products/dcaching
+2026-01-07 10:51:43,504 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-07 10:51:43,504 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-07 10:51:43,504 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-07 15:05:39,532 [.NET Signal Handler] INFO  Microsoft.Hosting.Lifetime - Application is shutting down...
+2026-01-07 15:15:19,022 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 15:15:19,062 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-07 15:15:19,062 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-07 15:15:19,062 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-07 15:15:19,062 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-07 15:15:56,290 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-07 15:15:56,294 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 15:15:56,294 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 15:15:56,295 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 15:15:56,295 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/linqtest
+2026-01-07 15:15:56,295 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 404 for GET /api/linqtest
+2026-01-07 15:15:56,295 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-07 15:15:56,295 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-07 15:15:56,295 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-07 15:16:08,773 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 15:16:08,776 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 15:16:08,776 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 15:16:08,777 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /linqtest
+2026-01-07 15:16:08,777 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 404 for GET /linqtest
+2026-01-07 15:16:08,777 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-07 15:16:08,777 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-07 15:16:08,777 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-07 15:17:09,654 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 15:17:09,655 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 15:17:09,655 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 15:17:09,655 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products/linqtest
+2026-01-07 15:17:09,772 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (44ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[CategoryId], [p].[Description], [p].[Name], [p].[Price], [p].[RowVersion]
+FROM [Products] AS [p]
+2026-01-07 15:17:09,815 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products/linqtest
+2026-01-07 15:17:09,816 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-07 15:17:09,816 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-07 15:17:09,816 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-07 17:19:42,458 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 17:19:42,464 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 17:19:42,464 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 17:19:42,464 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products/linqtest
+2026-01-07 17:19:42,753 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (52ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[CategoryId], [p].[Description], [p].[Name], [p].[Price], [p].[RowVersion]
+FROM [Products] AS [p]
+2026-01-07 17:19:42,770 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products/linqtest
+2026-01-07 17:19:42,771 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-07 17:19:42,771 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-07 17:19:42,771 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER

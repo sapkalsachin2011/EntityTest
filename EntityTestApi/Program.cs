@@ -70,6 +70,12 @@ builder.Services.AddScoped<GlobalExceptionHandlerMiddleware>(); // Register exce
 // Register ProductCache as singleton
 builder.Services.AddSingleton<EntityTestApi.Services.IProductCache, EntityTestApi.Services.ProductCache>();
 
+// Add Redis distributed cache
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration["Redis:Configuration"];
+});
+
 var app = builder.Build();
 
 // Ensure Log directory exists for log4net file appender

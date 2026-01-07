@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EntityTestApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c7cb789460919cc939275c7293e0c3fe1dc3365")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0992d23c2f223a60b180db3284b9a25a446e3a8")]
 [assembly: System.Reflection.AssemblyProductAttribute("EntityTestApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EntityTestApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

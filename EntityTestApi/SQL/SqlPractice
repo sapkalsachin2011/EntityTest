@@ -1,0 +1,60 @@
+SELECT Name, Salary,
+       NTILE(4) OVER (ORDER BY Salary DESC) AS Quartile
+FROM Employee;
+
+
+Select * from Employee
+WHERE NTILE(4) OVER (ORDER BY Salary DESC) = 1;
+
+SELECT Name, Salary,
+       ROW_NUMBER() OVER (ORDER BY Salary DESC) AS RowNum
+FROM Employee;
+
+SELECT Name, Salary,
+       RANK() OVER (ORDER BY Salary DESC) AS RowNum
+FROM Employee;
+
+SELECT Name, Salary,
+       DENSE_RANK() OVER (ORDER BY Salary DESC) AS RowNum
+FROM Employee;
+
+
+SELECT Name, Salary
+FROM Employee
+order by Salary DESC
+OFFSET 2 ROWS FETCH FIRST 3 ROWS ONLY;
+
+-- N th rank salary
+Select * from Employee order by Salary DESC
+
+Select top 1 salary from ( 
+Select distinct top 1 Salary from Employee
+order by Salary desc ) Result 
+order by Salary
+
+with result as (
+select salary , DENSE_RANK() over (order by Salary desc) as sal_rank
+from Employee )
+select top 1 salary from result
+where sal_rank = 2;
+
+
+
+select distinct Salary from Employee order by Salary desc
+Offset 1 row fetch next 1 row only;
+
+-- Create Temp Table
+CREATE TABLE #TempEmployee (
+    Id INT PRIMARY KEY,
+    Name NVARCHAR(100),
+    Salary DECIMAL(18, 2)
+);
+
+select * from #TempEmployee
+
+-- create Table Variable
+DECLARE @TempEmployeeTable TABLE (
+    Id INT PRIMARY KEY,
+    Name NVARCHAR(100),
+    Salary DECIMAL(18, 2)
+);
