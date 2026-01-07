@@ -1,4 +1,25 @@
+---
 
+## Recent Updates
+
+### Logging
+- Configured log4net for file-based logging.
+- Log files are now written to `EntityTestApi/Log/Supplierlog.txt` (project directory) instead of the build output folder.
+- Logging configuration is managed in `EntityTestApi/log4net.config`.
+- Middleware logs all requests and responses.
+
+### CI/CD Pipeline
+- Added a `Jenkinsfile` for automated build, test, and publish pipeline using Jenkins.
+- Pipeline stages: checkout, restore, build, test (xUnit, NUnit, MSTest), publish, and artifact archiving.
+- Supports integration with GitHub for automatic pipeline triggers on commit.
+- Artifacts are archived by Jenkins after each successful build.
+
+### Git & GitHub Integration
+- Project is now a Git repository and changes are pushed to GitHub.
+- Jenkins can be configured to poll GitHub or use webhooks for automatic pipeline runs on new commits.
+- Branch specifier set to `main` for single-branch builds.
+
+---
 
 **Legend:**
 - The controller injects ExternalApiService (via DI).
