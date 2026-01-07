@@ -1,4 +1,4 @@
-### Atomic create Supplier and Product
+### Atomic creiate Supplier and Product test
 POST http://localhost:5274/api/supplieruow/atomic
 Content-Type: application/json
 
