@@ -13,12 +13,13 @@ using System.ComponentModel.DataAnnotations;
 using EntityTestApi.Exceptions;
 using ValidationException = EntityTestApi.Exceptions.ValidationException; // Resolve ambiguity
 using Microsoft.Extensions.Caching.Distributed;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace EntityTestApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+  
     public class ProductsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -27,6 +28,9 @@ namespace EntityTestApi.Controllers
         private readonly IDistributedCache _distributedCache;
         private const string ALL_PRODUCTS_CACHE_KEY = "all_products";
         private const string ALL_PRODUCTS_REDIS_CACHE_KEY = "all_products_redis";
+
+        private readonly EntityTestApi.Services.OAuthTokenService _oauthTokenService;
+        private readonly IConfiguration _configuration;
 
         // CQRS handlers
         private readonly CQRS.Commands.ICommandHandler<CQRS.Commands.CreateProductCommand> _createProductCommandHandler;
@@ -38,7 +42,9 @@ namespace EntityTestApi.Controllers
             IMemoryCache memoryCache,
             IDistributedCache distributedCache,
             CQRS.Commands.ICommandHandler<CQRS.Commands.CreateProductCommand> createProductCommandHandler,
-            CQRS.Queries.IQueryHandler<CQRS.Queries.GetProductsQuery, IEnumerable<string>> getProductsQueryHandler)
+            CQRS.Queries.IQueryHandler<CQRS.Queries.GetProductsQuery, IEnumerable<string>> getProductsQueryHandler,
+            EntityTestApi.Services.OAuthTokenService oauthTokenService,
+            IConfiguration configuration)
         {
             _context = context;
             _logger = logger;
@@ -46,6 +52,8 @@ namespace EntityTestApi.Controllers
             _distributedCache = distributedCache;
             _createProductCommandHandler = createProductCommandHandler;
             _getProductsQueryHandler = getProductsQueryHandler;
+            _oauthTokenService = oauthTokenService;
+            _configuration = configuration;
         }
 
         /// <summary>
@@ -172,11 +180,11 @@ namespace EntityTestApi.Controllers
         /// CQRS: Get all products using query handler
         /// </summary>
         [HttpGet("cqrs")]
-        public async Task<IActionResult> GetProductsCqrs(CancellationToken cancellationToken)
-        {
-            var result = await _getProductsQueryHandler.Handle(new CQRS.Queries.GetProductsQuery(), cancellationToken);
-            return Ok(result);
-        }
+            public async Task<IActionResult> GetProductsCqrs(CancellationToken cancellationToken)
+            {
+                var result = await _getProductsQueryHandler.Handle(new CQRS.Queries.GetProductsQuery(), cancellationToken);
+                return Ok(result);
+            }
 
         /// <summary>
         /// Get all products - Supports content negotiation (JSON/XML)
@@ -192,9 +200,31 @@ namespace EntityTestApi.Controllers
         public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts([FromQuery] string? format = null)
         {
             _logger.LogInformation($"Fetching all products, Accept: {Request.Headers.Accept}, Format: {format}");
-            
+
+
+            // --- OAuth Token logic ---
+            var oauthSection = _configuration.GetSection("OAuth");
+            string tokenEndpoint = oauthSection["TokenEndpoint"] ?? string.Empty;
+            string clientId = oauthSection["ClientId"] ?? string.Empty;
+            string clientSecret = oauthSection["ClientSecret"] ?? string.Empty;
+            string audience = oauthSection["Audience"] ?? string.Empty;
+            var token = await _oauthTokenService.GetTokenAsync(tokenEndpoint, clientId, clientSecret, audience);
+            if (string.IsNullOrEmpty(token))
+            {
+                return Unauthorized("Unable to retrieve OAuth token");
+            }
+            // --- End OAuth Token logic ---
+
+            // --- Sample outgoing API call with Bearer token ---
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            // Example: Call a protected external API (uncomment and update URL as needed)
+            // var apiResponse = await httpClient.GetAsync("https://external-api.com/products");
+            // string apiResult = await apiResponse.Content.ReadAsStringAsync();
+            // --- End sample ---
+
             List<ProductDto> productDtos;
-            
+
             // Try to get from cache
             if (_memoryCache.TryGetValue(ALL_PRODUCTS_CACHE_KEY, out List<ProductDto>? cachedProducts))
             {
@@ -226,38 +256,33 @@ namespace EntityTestApi.Controllers
                     SlidingExpiration = TimeSpan.FromMinutes(2)
                 };
                 _memoryCache.Set(ALL_PRODUCTS_CACHE_KEY, productDtos, cacheOptions);
-
                 _logger.LogInformation("Fetching all products from database and caching");
                 Console.WriteLine("Fetching all products from database and caching");
             }
-            
+
             // Apply format if specified (single location for format handling)
             if (!string.IsNullOrEmpty(format))
             {
                 switch (format.ToLower())
                 {
                     case "xml":
-                        return new ObjectResult(productDtos) 
-                        { 
-                            ContentTypes = { "application/xml", "text/xml" } 
+                        return new ObjectResult(productDtos)
+                        {
+                            ContentTypes = { "application/xml", "text/xml" }
                         };
                     case "json":
-                        return new ObjectResult(productDtos) 
-                        { 
-                            ContentTypes = { "application/json" } 
+                        return new ObjectResult(productDtos)
+                        {
+                            ContentTypes = { "application/json" }
                         };
                     default:
                         return StatusCode(406, new { message = $"Format '{format}' not supported. Use 'json' or 'xml'." });
                 }
             }
-            
+
             // Use Accept header for content negotiation (default behavior)
-            return Ok(productDtos);
+            return Ok(new { tokenUsed = token, products = productDtos });
         }
-
-
-        // <summary>
-        /// Show all registered routes
         /// </summary>
         [HttpGet("debug/routes")]
         public ActionResult ShowRoutes([FromServices] IActionDescriptorCollectionProvider provider)

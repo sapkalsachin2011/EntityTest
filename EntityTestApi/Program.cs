@@ -32,11 +32,11 @@ if (string.IsNullOrWhiteSpace(connectionString))
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Register Kafka producer service
-builder.Services.AddSingleton<EntityTestApi.Kafka.KafkaProducerService>();
+// Register Kafka producer service -- Uncomment if Kafka is needed
+//builder.Services.AddSingleton<EntityTestApi.Kafka.KafkaProducerService>();
 
-// Register Kafka consumer background service
-builder.Services.AddHostedService<EntityTestApi.Kafka.KafkaConsumerService>();
+// Register Kafka consumer background service -uncomment if Kafka is needed
+//builder.Services.AddHostedService<EntityTestApi.Kafka.KafkaConsumerService>();
 
 // Add services to the container.
 builder.Services.AddScoped<EntityTestApi.Data.ISupplierRepository, EntityTestApi.Data.SupplierRepository>();
@@ -49,6 +49,9 @@ builder.Services.AddOpenApi();
 
 // Register ExternalApiService with IHttpClientFactory
 builder.Services.AddHttpClient<EntityTestApi.Services.ExternalApiService>();
+
+// Register OAuthTokenService with HttpClient
+builder.Services.AddHttpClient<EntityTestApi.Services.OAuthTokenService>();
 
 // Register CQRS command and query handlers
 builder.Services.AddScoped<EntityTestApi.CQRS.Commands.ICommandHandler<EntityTestApi.CQRS.Commands.CreateProductCommand>, EntityTestApi.CQRS.Commands.CreateProductCommandHandler>();
@@ -81,6 +84,14 @@ builder.Services.AddStackExchangeRedisCache(options =>
 {
     options.Configuration = builder.Configuration["Redis:Configuration"];
 });
+
+//Oauth2 JWT Bearer authentication
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", options =>
+    {
+        options.Authority = "https://ssapkal.auth0.com/"; // e.g., https://dev-xxxxxx.us.auth0.com/
+        options.Audience = "https://ssapkal.auth0.com/api/v2/"; // e.g., the identifier you set in Auth0 API settings
+    });
 
 var app = builder.Build();
 
@@ -160,6 +171,10 @@ app.Map("/Sachin",CustomCode);
 //     Console.WriteLine("      ⚠ TERMINAL MIDDLEWARE: Pipeline ends here!");
 //     await context.Response.WriteAsync("Terminal middleware executed. No controllers will run.");
 // });
+
+//Oauth2 JWT Bearer authentication
+app.UseAuthentication();
+app.UseAuthorization();
 
  app.MapControllers();
 

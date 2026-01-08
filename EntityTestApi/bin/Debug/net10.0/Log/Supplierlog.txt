@@ -1706,3 +1706,333 @@ VALUES (@p0, @p1, @p2);
 2026-01-07 21:37:54,776 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
 2026-01-07 21:37:54,776 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
 2026-01-07 21:37:54,776 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-07 23:34:07,412 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (32ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 23:34:07,463 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-07 23:34:07,464 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-07 23:34:07,464 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-07 23:34:07,464 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-07 23:34:07,742 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaConsumerService - Kafka consumer started for topic: suppliers
+2026-01-07 23:34:47,697 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 23:34:47,743 [1] ERROR Microsoft.Extensions.Hosting.Internal.Host - Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5274: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-01-07 23:34:47,744 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaConsumerService - Kafka consumer started for topic: suppliers
+2026-01-07 23:35:11,307 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 23:35:11,351 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-07 23:35:11,351 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-07 23:35:11,352 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-07 23:35:11,352 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-07 23:35:11,354 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaConsumerService - Kafka consumer started for topic: suppliers
+2026-01-07 23:47:14,833 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 23:47:14,877 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-07 23:47:14,877 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-07 23:47:14,878 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-07 23:47:14,878 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-07 23:47:32,052 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-07 23:50:29,126 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 23:50:29,170 [1] ERROR Microsoft.Extensions.Hosting.Internal.Host - Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5274: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-01-07 23:50:44,438 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 23:50:44,481 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-07 23:50:44,482 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-07 23:50:44,482 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-07 23:50:44,482 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-07 23:50:50,770 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-07 23:54:18,276 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 23:54:18,320 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-07 23:54:18,320 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-07 23:54:18,320 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-07 23:54:18,320 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-07 23:57:28,689 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 23:57:28,731 [1] ERROR Microsoft.Extensions.Hosting.Internal.Host - Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5274: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-01-07 23:57:50,581 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 23:57:50,619 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-07 23:57:50,620 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-07 23:57:50,620 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-07 23:57:50,620 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 00:01:25,738 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 00:30:56,694 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 00:30:56,746 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 00:30:56,746 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 00:30:56,746 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 00:30:56,746 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 00:31:04,399 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 00:31:04,401 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 00:31:04,401 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 00:31:04,401 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 00:31:04,402 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-08 00:31:04,432 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-08 00:31:04,516 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (36ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-08 00:31:04,521 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products from database and caching
+2026-01-08 00:31:04,528 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products
+2026-01-08 00:31:04,529 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-08 00:31:04,529 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-08 00:31:04,529 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-08 10:18:36,540 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (20ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 10:18:36,590 [1] ERROR Microsoft.Extensions.Hosting.Internal.Host - Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5274: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-01-08 10:19:05,701 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 10:19:05,755 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 10:19:05,759 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 10:19:05,759 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 10:19:05,759 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 10:19:27,248 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 10:19:27,250 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 10:19:27,250 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 10:19:27,250 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 10:19:27,251 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-08 10:19:27,300 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-08 10:19:27,308 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - Start processing HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 10:19:27,310 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Sending HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 10:19:27,729 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Received HTTP response headers after 415.5666ms - 403
+2026-01-08 10:19:27,730 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - End processing HTTP request after 424.2969ms - 403
+2026-01-08 10:19:27,734 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 401 for GET /api/products
+2026-01-08 10:19:27,735 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-08 10:19:27,735 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-08 10:19:27,735 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-08 10:20:07,480 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 10:20:07,562 [1] ERROR Microsoft.Extensions.Hosting.Internal.Host - Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5274: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-01-08 10:21:40,883 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 10:21:40,965 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 10:21:40,965 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 10:21:40,965 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 10:21:40,966 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 10:21:44,693 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 10:21:44,698 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 10:21:44,698 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 10:21:44,699 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 10:21:44,700 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-08 10:21:44,764 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-08 10:30:12,722 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 10:30:12,817 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 10:30:12,818 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 10:30:12,818 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 10:30:12,818 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 10:30:19,576 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 10:30:19,578 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 10:30:19,578 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 10:30:19,579 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 10:30:19,579 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-08 10:30:19,607 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-08 10:30:19,609 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - Start processing HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 10:30:19,609 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Sending HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 10:30:20,037 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Received HTTP response headers after 423.0895ms - 200
+2026-01-08 10:30:20,038 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - End processing HTTP request after 429.2925ms - 200
+2026-01-08 10:30:20,116 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (24ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-08 10:30:20,123 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products from database and caching
+2026-01-08 10:30:20,131 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products
+2026-01-08 10:30:20,131 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-08 10:30:20,131 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-08 10:30:20,131 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER

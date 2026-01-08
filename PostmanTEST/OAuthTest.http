@@ -1,0 +1,26 @@
+
+### OAuth2 Token Request
+POST https://ssapkal.auth0.com/oauth/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&client_id=r8ioSyQkGy1WiJvzCA4KM3yVA6svbWFA&client_secret=XzqdqRvnjmX5ZtvY8-wyx9KcLMyVL4U461Y4yHeeccevYb2ungP6P4y2obDl7Ioz&audience=https://ssapkal.auth0.com/api/v2/
+
+### OAuth2 Protected Products API Test
+
+POST http://localhost:5274/api/products
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+{
+  "name": "OAuth Test Product",
+  "description": "Created via OAuth2 Postman test",
+  "contactEmail": "test@oauth.com"
+}
+
+### Example GET (also protected)
+
+
+GET http://localhost:5274/api/products
+Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJESXhSVUl5UXpjMU1UQkJOVFk1UlRKRk5UWTFRamt5UlRsRlFrWTFRVUpEUXpkRVFrSTJOQSJ9.eyJpc3MiOiJodHRwczovL3NzYXBrYWwuYXV0aDAuY29tLyIsInN1YiI6InI4aW9TeVFrR3kxV2lKdnpDQTRLTTN5VkE2c3ZiV0ZBQGNsaWVudHMiLCJhdWQiOiJodHRwczovL3NzYXBrYWwuYXV0aDAuY29tL2FwaS92Mi8iLCJpYXQiOjE3Njc4NTMxODAsImV4cCI6MTc2NzkzOTU4MCwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIiwiYXpwIjoicjhpb1N5UWtHeTFXaUp2ekNBNEtNM3lWQTZzdmJXRkEifQ.mqb6gNJ69uZY3n9LDdYzTk9F2QemiOMMcKNJfNP2QyDPu6MUR3fiI_s-OyLZ-ez-gZgQhBZia-bsJWOAAAIXIITkdAXzXafEMv5Q-BfB24b1NPpInPYPlPGJjaK715VE8AFekzPpVqz5C_VnTaxk2w4ripIQ2iz4BO5e0oNITN5XR9Efj4GEQq0hdJVDzSU2xB9Zsf1A3TGJ1jrzei7hsOrciQGgg1VwA61aH8bdl17NSovq52sNiganCHd1uB5-g5E3pCRL1w1BOuq-U6BA29tSySf7WsDxHxOJL6Z0fw_vJluZGw7EZpIG4gPoOB8wpN3ekG4pP6OZIo1KzYWDDQ
+
+

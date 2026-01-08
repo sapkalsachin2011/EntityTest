@@ -770,3 +770,80 @@ This structure shows how Kafka, Zookeeper, Docker, and your .NET API are connect
 > **Note:**
 > - Replace `192.168.1.8` with your actual host LAN IP if different.
 > - The consumer command will display all messages sent to the `suppliers` topic, useful for debugging and verifying message flow from your .NET API.
+---
+
+## OAuth Integration & Changes
+
+### Overview
+This project now supports OAuth2 authentication for secure API access. The integration uses Auth0 as the OAuth provider and demonstrates how to request and use access tokens for protected endpoints.
+
+### Project Structure Updates
+- **Services/OAuthTokenService.cs**: Added service to request OAuth2 tokens using client credentials and audience.
+- **Controllers/ProductsController.cs**: Updated to retrieve OAuth token from configuration and demonstrate passing the token in outgoing API requests.
+- **appsettings.json**: Added `OAuth` section for token endpoint, client ID, client secret, and audience.
+
+### appsettings.json Example
+```json
+"OAuth": {
+  "TokenEndpoint": "https://ssapkal.auth0.com/oauth/token",
+  "ClientId": "r8ioSyQkGy1WiJvzCA4KM3yVA6svbWFA",
+  "ClientSecret": "XzqdqRvnjmX5ZtvY8-wyx9KcLMyVL4U461Y4yHeeccevYb2ungP6P4y2obDl7Ioz",
+  "Audience": "https://ssapkal.auth0.com/api/v2/"
+}
+```
+
+### Code Changes
+#### 1. OAuthTokenService
+```csharp
+public async Task<string?> GetTokenAsync(string tokenEndpoint, string clientId, string clientSecret, string audience)
+{
+    var request = new HttpRequestMessage(HttpMethod.Post, tokenEndpoint)
+    {
+        Content = new FormUrlEncodedContent(new[]
+        {
+            new KeyValuePair<string, string>("grant_type", "client_credentials"),
+            new KeyValuePair<string, string>("client_id", clientId),
+            new KeyValuePair<string, string>("client_secret", clientSecret),
+            new KeyValuePair<string, string>("audience", audience)
+        })
+    };
+    var response = await _httpClient.SendAsync(request);
+    if (!response.IsSuccessStatusCode)
+        return null;
+    var json = await response.Content.ReadAsStringAsync();
+    using var doc = JsonDocument.Parse(json);
+    if (doc.RootElement.TryGetProperty("access_token", out var token))
+        return token.GetString();
+    return null;
+}
+```
+
+#### 2. ProductsController
+```csharp
+var oauthSection = _configuration.GetSection("OAuth");
+string tokenEndpoint = oauthSection["TokenEndpoint"] ?? string.Empty;
+string clientId = oauthSection["ClientId"] ?? string.Empty;
+string clientSecret = oauthSection["ClientSecret"] ?? string.Empty;
+string audience = oauthSection["Audience"] ?? string.Empty;
+var token = await _oauthTokenService.GetTokenAsync(tokenEndpoint, clientId, clientSecret, audience);
+if (string.IsNullOrEmpty(token))
+{
+    return Unauthorized("Unable to retrieve OAuth token");
+}
+
+// Sample outgoing API call with Bearer token
+var httpClient = new HttpClient();
+httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+// var apiResponse = await httpClient.GetAsync("https://external-api.com/products");
+```
+
+### How It Works
+- The API requests an OAuth2 token using client credentials and audience.
+- The token is used for outgoing requests to protected APIs by setting the Authorization header.
+- Configuration is managed in `appsettings.json` for easy updates.
+
+### Testing
+- See `PostmanTEST/OAuthTest.http` for sample token requests and protected API calls.
+- The API will automatically retrieve and use the token for outgoing requests in the `GetProducts` endpoint.
+
+---

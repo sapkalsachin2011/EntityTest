@@ -58,6 +58,7 @@
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Confluent.Kafka.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Humanizer.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/log4net.dll
+/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.AspNetCore.OpenApi.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.Bcl.Cryptography.dll
@@ -78,6 +79,7 @@
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.EntityFrameworkCore.Proxies.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.EntityFrameworkCore.Relational.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.Extensions.DependencyModel.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.Identity.Client.dll
@@ -93,6 +95,8 @@
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.SqlServer.Server.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Mono.TextTemplating.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Newtonsoft.Json.dll
+/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Pipelines.Sockets.Unofficial.dll
+/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/StackExchange.Redis.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/System.ClientModel.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/System.CodeDom.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/System.Composition.AttributedModel.dll
@@ -189,6 +193,7 @@
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/zh-Hant/Microsoft.Data.SqlClient.resources.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/runtimes/linux-arm64/native/librdkafka.so
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/runtimes/linux-x64/native/alpine-librdkafka.so
+/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/runtimes/linux-x64/native/centos8-librdkafka.so
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/runtimes/linux-x64/native/librdkafka.so
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/runtimes/osx-arm64/native/librdkafka.dylib
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/runtimes/osx-x64/native/librdkafka.dylib
@@ -237,7 +242,3 @@
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/obj/Debug/net10.0/EntityTe.D6D52BC3.Up2Date
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/obj/Debug/net10.0/EntityTestApi.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/obj/Debug/net10.0/EntityTestApi.genruntimeconfig.cache
-/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll
-/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Pipelines.Sockets.Unofficial.dll
-/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/StackExchange.Redis.dll
-/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/runtimes/linux-x64/native/centos8-librdkafka.so
