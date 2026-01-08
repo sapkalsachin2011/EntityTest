@@ -729,9 +729,11 @@ docker exec -it entitytest-kafka kafka-console-consumer --bootstrap-server 192.1
 ```
 # runnung the post command via Postman and getting below output 
  -  /Users/sachinsapkal/Projects/entitycore/Entitytest/PostmanTEST/KafkaSample.http - POST command 
-2026-01-07 18:52:22,763 [.NET TP Worker] INFO  EntityTestApi.Controllers.SuppliersController - Supplier created with ID: 3006
-2026-01-07 18:52:22,764 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Producing Kafka message to topic 'suppliers': Supplier created: { Id: 3006, Name: 'Kafka Test Supplier', Email: 'kafka-sample@test.com' }
 
+2026-01-07 19:37:19,075 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Producing Kafka message to topic 'suppliers': Supplier created: { Id: 4005, Name: 'Kafka Test Supplier', Email: 'kafka-sample@test.com' }
+2026-01-07 19:37:19,108 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Awaiting Kafka delivery...
+2026-01-07 19:37:19,178 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Kafka message delivered to suppliers [[0]] @0 (status: Persisted)
+2026-01-07 19:37:19,178 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Code after deliveryResult log reached.
 
 
 
