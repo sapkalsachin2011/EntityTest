@@ -1671,3 +1671,38 @@ VALUES (@p0, @p1, @p2);
 2026-01-07 19:39:18,570 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
 2026-01-07 19:39:18,570 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
 2026-01-07 19:39:30,292 [.NET Signal Handler] INFO  Microsoft.Hosting.Lifetime - Application is shutting down...
+2026-01-07 21:37:40,469 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-07 21:37:40,513 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-07 21:37:40,514 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-07 21:37:40,514 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-07 21:37:40,514 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-07 21:37:40,554 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaConsumerService - Kafka consumer started for topic: suppliers
+2026-01-07 21:37:44,114 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaConsumerService - Consumed message: Supplier created: { Id: 4005, Name: 'Kafka Test Supplier', Email: 'kafka-sample@test.com' }
+2026-01-07 21:37:44,114 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaConsumerService - Consumed message: Supplier created: { Id: 4006, Name: 'Kafka Test Supplier', Email: 'kafka-sample@test.com' }
+2026-01-07 21:37:54,532 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-07 21:37:54,534 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-07 21:37:54,534 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-07 21:37:54,534 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-07 21:37:54,535 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request POST /api/suppliers
+2026-01-07 21:37:54,632 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (22ms) [Parameters=[@p0='?' (Size = 100), @p1='?' (Size = 1000), @p2='?' (Size = 200)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Suppliers] ([ContactEmail], [Description], [Name])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2);
+2026-01-07 21:37:54,647 [.NET TP Worker] INFO  EntityTestApi.Controllers.SuppliersController - Supplier created with ID: 4007
+2026-01-07 21:37:54,648 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Producing Kafka message to topic 'suppliers': Supplier created: { Id: 4007, Name: 'Kafka Test Supplier', Email: 'kafka-sample@test.com' }
+2026-01-07 21:37:54,651 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Awaiting Kafka delivery...
+2026-01-07 21:37:54,663 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaConsumerService - Consumed message: Supplier created: { Id: 4007, Name: 'Kafka Test Supplier', Email: 'kafka-sample@test.com' }
+2026-01-07 21:37:54,663 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Kafka message delivered to suppliers [[0]] @2 (status: Persisted)
+2026-01-07 21:37:54,663 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Code after deliveryResult log reached.
+2026-01-07 21:37:54,776 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 201 for POST /api/suppliers
+2026-01-07 21:37:54,776 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-07 21:37:54,776 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-07 21:37:54,776 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER

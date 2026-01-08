@@ -35,9 +35,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Register Kafka producer service
 builder.Services.AddSingleton<EntityTestApi.Kafka.KafkaProducerService>();
 
-// Register Kafka producer service
-builder.Services.AddSingleton<EntityTestApi.Kafka.KafkaProducerService>();
-
+// Register Kafka consumer background service
+builder.Services.AddHostedService<EntityTestApi.Kafka.KafkaConsumerService>();
 
 // Add services to the container.
 builder.Services.AddScoped<EntityTestApi.Data.ISupplierRepository, EntityTestApi.Data.SupplierRepository>();

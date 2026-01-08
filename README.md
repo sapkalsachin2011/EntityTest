@@ -730,12 +730,13 @@ docker exec -it entitytest-kafka kafka-console-consumer --bootstrap-server 192.1
 # runnung the post command via Postman and getting below output 
  -  /Users/sachinsapkal/Projects/entitycore/Entitytest/PostmanTEST/KafkaSample.http - POST command 
 
-2026-01-07 19:37:19,075 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Producing Kafka message to topic 'suppliers': Supplier created: { Id: 4005, Name: 'Kafka Test Supplier', Email: 'kafka-sample@test.com' }
-2026-01-07 19:37:19,108 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Awaiting Kafka delivery...
-2026-01-07 19:37:19,178 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Kafka message delivered to suppliers [[0]] @0 (status: Persisted)
-2026-01-07 19:37:19,178 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Code after deliveryResult log reached.
 
-
+2026-01-07 21:37:54,647 [.NET TP Worker] INFO  EntityTestApi.Controllers.SuppliersController - Supplier created with ID: 4007
+2026-01-07 21:37:54,648 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Producing Kafka message to topic 'suppliers': Supplier created: { Id: 4007, Name: 'Kafka Test Supplier', Email: 'kafka-sample@test.com' }
+2026-01-07 21:37:54,651 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Awaiting Kafka delivery...
+2026-01-07 21:37:54,663 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaConsumerService - Consumed message: Supplier created: { Id: 4007, Name: 'Kafka Test Supplier', Email: 'kafka-sample@test.com' }
+2026-01-07 21:37:54,663 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Kafka message delivered to suppliers [[0]] @2 (status: Persisted)
+2026-01-07 21:37:54,663 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Code after deliveryResult log reached.
 
 ### Kafka Structure
 
@@ -757,6 +758,7 @@ Kafka (confluentinc/cp-kafka:7.5.0)
 │
 ├── .NET API Integration:
 │     - Produces messages to 'suppliers' topic
+│     - Consumes messages from 'suppliers' topic (KafkaConsumerService as BackgroundService)
 │     - Uses Confluent.Kafka client
 │     - Configured via appsettings.json
 │         - BootstrapServers: 192.168.1.8:9092
