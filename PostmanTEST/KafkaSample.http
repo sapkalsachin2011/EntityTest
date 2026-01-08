@@ -1,0 +1,9 @@
+### Create a supplier and trigger Kafka message
+POST http://localhost:5274/api/suppliers
+Content-Type: application/json
+
+{
+  "name": "Kafka Test Supplier",
+  "description": "Supplier created to test Kafka integration",
+  "contactEmail": "kafka-sample@test.com"
+}

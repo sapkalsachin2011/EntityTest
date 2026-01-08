@@ -32,6 +32,13 @@ if (string.IsNullOrWhiteSpace(connectionString))
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+// Register Kafka producer service
+builder.Services.AddSingleton<EntityTestApi.Kafka.KafkaProducerService>();
+
+// Register Kafka producer service
+builder.Services.AddSingleton<EntityTestApi.Kafka.KafkaProducerService>();
+
+
 // Add services to the container.
 builder.Services.AddScoped<EntityTestApi.Data.ISupplierRepository, EntityTestApi.Data.SupplierRepository>();
 builder.Services.AddScoped<EntityTestApi.Data.IProductRepository, EntityTestApi.Data.ProductRepository>();

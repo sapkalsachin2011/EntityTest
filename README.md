@@ -60,7 +60,30 @@ Both results should be the same, but IHttpClientFactory is preferred for real-wo
 
 # EntityTest
 
+
 # EntityTest API — .NET 10 Web API with Entity Framework Core & SQL Server
+## LINQ Query Testing Endpoint
+
+You can test multiple LINQ queries on products using the new endpoint:
+
+```
+GET http://localhost:5274/api/products/linqtest
+```
+{
+  "ExpensiveProducts": [ ... ],
+  "ProductCount": 5
+}
+### Concurrency & Postman Testing
+To test EF Core concurrency (RowVersion):
+
+1. Use the GET endpoint to fetch a product and note the `rowVersion` value.
+2. Use the PUT endpoint to update the product, including the `rowVersion` in your request body.
+3. Try to update again with the same (now old) `rowVersion` to trigger a concurrency error (409 Conflict).
+
+Sample requests are provided in `PostmanTEST/ConcurrencyTest.http`.
+
+**HTTP file usage:**
+If you use VS Code, install the REST Client extension to run `.http` files directly from the editor. The HTTP icon will appear for these files if the extension is installed.
 
 A modern ASP.NET Core Web API project demonstrating advanced .NET concepts:
 - Entity Framework Core (with SQL Server)
@@ -668,3 +691,78 @@ This project is open source and available under the MIT License.
 **Last Updated:** January 6, 2026
 **Version:** 1.0.0  
 **Target Framework:** .NET 10
+
+---
+
+## Kafka Integration
+
+This project demonstrates how to integrate Apache Kafka with a .NET Web API using Docker Compose and Confluent.Kafka.
+
+### Implementation Steps
+
+1. **Add Kafka and Zookeeper to Docker Compose:**
+   - Added `confluentinc/cp-kafka` and `confluentinc/cp-zookeeper` services to `docker-compose.yml`.
+   - Configured `KAFKA_ADVERTISED_LISTENERS` to use your host's LAN IP for external access.
+
+2. **Configure .NET API for Kafka:**
+   - Added `Confluent.Kafka` NuGet package to the API project.
+   - Created `KafkaProducerService` for sending messages to Kafka.
+   - Added Kafka settings to `appsettings.json` (BootstrapServers, Topic).
+
+3. **Produce Kafka Messages:**
+   - On supplier creation, the API sends a message to the `suppliers` topic using the producer service.
+   - Logging and error handling are included for Kafka operations.
+
+4. **Network Configuration:**
+   - Used the host's LAN IP (e.g., `192.168.1.8`) for Kafka advertised listeners and .NET client configuration to ensure connectivity between host and container.
+
+### Useful Kafka CLI Commands
+
+You can use these commands from your host terminal to interact with Kafka:
+
+```bash
+# List all Kafka topics:
+docker exec -it entitytest-kafka kafka-topics --bootstrap-server 192.168.1.8:9092 --list
+
+# Consume all messages from the 'suppliers' topic from the beginning:
+docker exec -it entitytest-kafka kafka-console-consumer --bootstrap-server 192.168.1.8:9092 --topic suppliers --from-beginning
+```
+# runnung the post command via Postman and getting below output 
+ -  /Users/sachinsapkal/Projects/entitycore/Entitytest/PostmanTEST/KafkaSample.http - POST command 
+2026-01-07 18:52:22,763 [.NET TP Worker] INFO  EntityTestApi.Controllers.SuppliersController - Supplier created with ID: 3006
+2026-01-07 18:52:22,764 [.NET TP Worker] INFO  EntityTestApi.Kafka.KafkaProducerService - Producing Kafka message to topic 'suppliers': Supplier created: { Id: 3006, Name: 'Kafka Test Supplier', Email: 'kafka-sample@test.com' }
+
+
+
+
+### Kafka Structure
+
+```
+Kafka (confluentinc/cp-kafka:7.5.0)
+│
+├── Listeners:
+│     - PLAINTEXT://192.168.1.8:9092 (for host/clients)
+│     - PLAINTEXT_HOST://kafka:29092 (for Docker network)
+│
+├── Topics:
+│     - suppliers (used by .NET API)
+│
+├── Zookeeper (confluentinc/cp-zookeeper:7.5.0)
+│     - Required for Kafka broker coordination
+│
+├── Docker Compose Network:
+│     - entitytest-network (bridge)
+│
+├── .NET API Integration:
+│     - Produces messages to 'suppliers' topic
+│     - Uses Confluent.Kafka client
+│     - Configured via appsettings.json
+│         - BootstrapServers: 192.168.1.8:9092
+│         - Topic: suppliers
+```
+
+This structure shows how Kafka, Zookeeper, Docker, and your .NET API are connected and configured in this project.
+
+> **Note:**
+> - Replace `192.168.1.8` with your actual host LAN IP if different.
+> - The consumer command will display all messages sent to the `suppliers` topic, useful for debugging and verifying message flow from your .NET API.

@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "redEsoga1L8=",
+  "dgSpecHash": "y6ldMEaHbOE=",
   "success": true,
   "projectFilePath": "/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/EntityTestApi.csproj",
   "expectedPackageFiles": [
     "/Users/sachinsapkal/.nuget/packages/azure.core/1.47.1/azure.core.1.47.1.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/azure.identity/1.14.2/azure.identity.1.14.2.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/castle.core/5.2.1/castle.core.5.2.1.nupkg.sha512",
-    "/Users/sachinsapkal/.nuget/packages/confluent.kafka/2.4.0/confluent.kafka.2.4.0.nupkg.sha512",
+    "/Users/sachinsapkal/.nuget/packages/confluent.kafka/2.13.0/confluent.kafka.2.13.0.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
-    "/Users/sachinsapkal/.nuget/packages/librdkafka.redist/2.4.0/librdkafka.redist.2.4.0.nupkg.sha512",
+    "/Users/sachinsapkal/.nuget/packages/librdkafka.redist/2.13.0/librdkafka.redist.2.13.0.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/log4net/2.0.15/log4net.2.0.15.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/microsoft.aspnetcore.openapi/10.0.0-rc.2.25502.107/microsoft.aspnetcore.openapi.10.0.0-rc.2.25502.107.nupkg.sha512",
     "/Users/sachinsapkal/.nuget/packages/microsoft.bcl.asyncinterfaces/8.0.0/microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",

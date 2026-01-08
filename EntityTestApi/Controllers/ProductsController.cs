@@ -55,6 +55,7 @@ namespace EntityTestApi.Controllers
         public async Task<IActionResult> LinqTest()
         {
             var products = await _context.Products.ToListAsync();
+               List<ProductDto>? productDtos = null;
 
             // Example LINQ queries
             var expensiveProducts = products.Where(p => p.Price > 1000).ToList();
@@ -63,6 +64,30 @@ namespace EntityTestApi.Controllers
             var namesOnly = products.Select(p => p.Name).ToList();
             var firstProduct = products.FirstOrDefault();
             var productCount = products.Count();
+
+            // join   2 tables and get data 
+
+            var joineddata = from p in _context.Products
+                                join c in _context.Categories
+                                on p.CategoryId equals c.Id
+                                select new {
+                                    ProductName = p.Name,
+                                    CategoryName = c.Name
+                                };     
+
+            productDtos = _context.Products
+                 .AsNoTracking()
+                 .Include (p => p.Category)
+                   .Select(p => new ProductDto
+                   {
+                       Id = p.Id,
+                       Name = p.Name,
+                       Description = p.Description,
+                       Price = p.Price,
+                       CategoryId = p.CategoryId,
+                       CategoryName = p.Category.Name
+                   })
+                   .ToList();
 
             return Ok(new
             {

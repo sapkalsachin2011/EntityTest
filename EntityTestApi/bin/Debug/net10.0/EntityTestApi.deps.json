@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v10.0": {
       "EntityTestApi/1.0.0": {
         "dependencies": {
-          "Confluent.Kafka": "2.4.0",
+          "Confluent.Kafka": "2.13.0",
           "Microsoft.AspNetCore.OpenApi": "10.0.0-rc.2.25502.107",
           "Microsoft.EntityFrameworkCore.Design": "10.0.1",
           "Microsoft.EntityFrameworkCore.Proxies": "10.0.1",
@@ -54,14 +54,14 @@
           }
         }
       },
-      "Confluent.Kafka/2.4.0": {
+      "Confluent.Kafka/2.13.0": {
         "dependencies": {
-          "librdkafka.redist": "2.4.0"
+          "librdkafka.redist": "2.13.0"
         },
         "runtime": {
-          "lib/net6.0/Confluent.Kafka.dll": {
-            "assemblyVersion": "2.4.0.0",
-            "fileVersion": "2.4.0.0"
+          "lib/net8.0/Confluent.Kafka.dll": {
+            "assemblyVersion": "2.13.0.0",
+            "fileVersion": "2.13.0.0"
           }
         }
       },
@@ -73,7 +73,7 @@
           }
         }
       },
-      "librdkafka.redist/2.4.0": {
+      "librdkafka.redist/2.13.0": {
         "runtimeTargets": {
           "runtimes/linux-arm64/native/librdkafka.so": {
             "rid": "linux-arm64",
@@ -85,12 +85,7 @@
             "assetType": "native",
             "fileVersion": "0.0.0.0"
           },
-          "runtimes/linux-x64/native/centos6-librdkafka.so": {
-            "rid": "linux-x64",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          },
-          "runtimes/linux-x64/native/centos7-librdkafka.so": {
+          "runtimes/linux-x64/native/centos8-librdkafka.so": {
             "rid": "linux-x64",
             "assetType": "native",
             "fileVersion": "0.0.0.0"
@@ -1122,12 +1117,12 @@
       "path": "castle.core/5.2.1",
       "hashPath": "castle.core.5.2.1.nupkg.sha512"
     },
-    "Confluent.Kafka/2.4.0": {
+    "Confluent.Kafka/2.13.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3xrE8SUSLN10klkDaXFBAiXxTc+2wMffvjcZ3RUyvOo2ckaRJZ3dY7yjs6R7at7+tjUiuq2OlyTiEaV6G9zFHA==",
-      "path": "confluent.kafka/2.4.0",
-      "hashPath": "confluent.kafka.2.4.0.nupkg.sha512"
+      "sha512": "sha512-QoQ0UT/XQXMjGYd337ungOq5XYITGh+S8Hjkj2tEiMsWrn1w0DvyXZgfFQyBPzlBWICBMiaBfnedIuSvss4oLQ==",
+      "path": "confluent.kafka/2.13.0",
+      "hashPath": "confluent.kafka.2.13.0.nupkg.sha512"
     },
     "Humanizer.Core/2.14.1": {
       "type": "package",
@@ -1136,12 +1131,12 @@
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
-    "librdkafka.redist/2.4.0": {
+    "librdkafka.redist/2.13.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uqi1sNe0LEV50pYXZ3mYNJfZFF1VmsZ6m8wbpWugAAPOzOcX8FJP5FOhLMoUKVFiuenBH2v8zVBht7f1RCs3rA==",
-      "path": "librdkafka.redist/2.4.0",
-      "hashPath": "librdkafka.redist.2.4.0.nupkg.sha512"
+      "sha512": "sha512-PCtGYOJvqDo+dqxRsBidc6OJGGSCIqmh0wIWgTQljuzaxeAM8uAheNwZ/6o60hueObJj1vPczNLLeoLEu1+Q3g==",
+      "path": "librdkafka.redist/2.13.0",
+      "hashPath": "librdkafka.redist.2.13.0.nupkg.sha512"
     },
     "log4net/2.0.15": {
       "type": "package",

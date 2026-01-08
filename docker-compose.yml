@@ -1,24 +1,25 @@
+
 services:
 
-  # SQL Server database
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: entitytest-sqlserver
-    environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "Test@2011"
-      MSSQL_PID: "Developer"
-    ports:
-      - "1433:1433"
-    volumes:
-      - sqlserver-data:/var/opt/mssql
-    networks:
-      - entitytest-network
-    healthcheck:
-      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Test@2011", "-Q", "SELECT 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
+  # SQL Server database (commented out)
+  # sqlserver:
+  #   image: mcr.microsoft.com/mssql/server:2022-latest
+  #   container_name: entitytest-sqlserver
+  #   environment:
+  #     ACCEPT_EULA: "Y"
+  #     SA_PASSWORD: "Test@2011"
+  #     MSSQL_PID: "Developer"
+  #   ports:
+  #     - "1433:1433"
+  #   volumes:
+  #     - sqlserver-data:/var/opt/mssql
+  #   networks:
+  #     - entitytest-network
+  #   healthcheck:
+  #     test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Test@2011", "-Q", "SELECT 1"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
 
   # Zookeeper (required for Kafka)
   zookeeper:
@@ -31,6 +32,9 @@ services:
       - "2181:2181"
     networks:
       - entitytest-network
+    volumes:
+      - ./zookeeper-data/data:/var/lib/zookeeper/data
+      - ./zookeeper-data/log:/var/lib/zookeeper/log
 
   # Kafka broker
   kafka:
@@ -43,29 +47,31 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_HOST://kafka:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.1.8:9092,PLAINTEXT_HOST://kafka:29092
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     networks:
       - entitytest-network
 
-  # .NET API
-  entitytest-api:
-    build:
-      context: ./EntityTestApi
-      dockerfile: Dockerfile
-    container_name: entitytest-api
-    depends_on:
-      sqlserver:
-        condition: service_healthy
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=EntityTestDb;User Id=SA;Password=Test@2011;TrustServerCertificate=True;"
-    ports:
-      - "5274:5274"
-    networks:
-      - entitytest-network
-    restart: unless-stopped
+
+  # .NET API (commented out)
+  # entitytest-api:
+  #   build:
+  #     context: ./EntityTestApi
+  #     dockerfile: Dockerfile
+  #   container_name: entitytest-api
+  #   depends_on:
+  #     sqlserver:
+  #       condition: service_healthy
+  #   environment:
+  #     ASPNETCORE_ENVIRONMENT: Development
+  #     ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=EntityTestDb;User Id=SA;Password=Test@2011;TrustServerCertificate=True;"
+  #   ports:
+  #     - "5274:5274"
+  #   networks:
+  #     - entitytest-network
+  #   restart: unless-stopped
 
 volumes:
   sqlserver-data:
