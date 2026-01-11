@@ -203,6 +203,13 @@ namespace EntityTestApi.Controllers
 
 
             // --- OAuth Token logic ---
+            // Azure Key Vault integration (commented out for rollback)
+            // string tokenEndpoint = EntityTestApi.OAuthConfig.TokenEndpoint ?? string.Empty;
+            // string clientId = EntityTestApi.OAuthConfig.ClientId ?? string.Empty;
+            // string clientSecret = EntityTestApi.OAuthConfig.ClientSecret ?? string.Empty;
+            // string audience = EntityTestApi.OAuthConfig.Audience ?? string.Empty;
+
+            // Use appsettings.json for OAuth config (default/fallback)
             var oauthSection = _configuration.GetSection("OAuth");
             string tokenEndpoint = oauthSection["TokenEndpoint"] ?? string.Empty;
             string clientId = oauthSection["ClientId"] ?? string.Empty;

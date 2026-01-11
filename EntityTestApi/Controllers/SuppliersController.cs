@@ -13,13 +13,13 @@ namespace EntityTestApi.Controllers
     {
         private readonly ISupplierRepository _supplierRepository;
         private readonly ILogger<SuppliersController> _logger;
-        private readonly Kafka.KafkaProducerService _kafkaProducer;
+       // private readonly Kafka.KafkaProducerService _kafkaProducer;
 
-        public SuppliersController(ISupplierRepository supplierRepository, ILogger<SuppliersController> logger, Kafka.KafkaProducerService kafkaProducer)
+        public SuppliersController(ISupplierRepository supplierRepository, ILogger<SuppliersController> logger) //, Kafka.KafkaProducerService kafkaProducer
         {
             _supplierRepository = supplierRepository;
             _logger = logger;
-            _kafkaProducer = kafkaProducer;
+           // _kafkaProducer = kafkaProducer;
         }
 
         // GET: api/suppliers
@@ -52,7 +52,7 @@ namespace EntityTestApi.Controllers
 
             // Send Kafka message
             var message = $"Supplier created: {{ Id: {supplier.Id}, Name: '{supplier.Name}', Email: '{supplier.ContactEmail}' }}";
-            await _kafkaProducer.ProduceAsync(message);
+           // await _kafkaProducer.ProduceAsync(message);
 
             return CreatedAtAction(nameof(GetSupplier), new { id = supplier.Id }, supplier);
         }

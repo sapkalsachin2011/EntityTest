@@ -5,6 +5,8 @@ using EntityTestApi.Middleware;
 using Microsoft.AspNetCore.Diagnostics;
 using System;
 using System.IO;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +18,42 @@ builder.Logging.AddLog4Net(log4netConfigPath);
 // Enable log4net internal debugging for troubleshooting
 log4net.Util.LogLog.InternalDebugging = true;
 
-// Configure DbContext (uses ConnectionStrings:DefaultConnection from appsettings.json)
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// Azure Key Vault integration (commented out for rollback)
+// To re-enable, uncomment the following lines and configure Key Vault:
+// builder.Configuration.AddAzureKeyVault(
+//     new Uri("https://sbsvault123.vault.azure.net/secrets/DefaultConnection/4248dd7075be4bc0875fe9c27b7ee605"),
+//     new DefaultAzureCredential());
 
-// Fail fast with a helpful message if the connection string is not configured.
+// // Fetch secrets directly from Azure Key Vault (commented out for rollback)
+// var keyVaultUrl = "https://sbsvault123.vault.azure.net/";
+// var secretClient = new SecretClient(new Uri(keyVaultUrl), new DefaultAzureCredential());
+// string? connectionString = null;
+// string? tokenEndpoint = null;
+// string? clientId = null;
+// string? clientSecret = null;
+// string? audience = null;
+// try
+// {
+//     var secret = secretClient.GetSecret("DefaultConnection");
+//     connectionString = secret.Value.Value;
+//     tokenEndpoint = secretClient.GetSecret("TokenEndpoint").Value.Value;
+//     clientId = secretClient.GetSecret("ClientId").Value.Value;
+//     clientSecret = secretClient.GetSecret("ClientSecret").Value.Value;
+//     audience = secretClient.GetSecret("Audience").Value.Value;
+// }
+// catch (Exception ex)
+// {
+//     Console.WriteLine($"Failed to fetch secrets from Key Vault: {ex.Message}");
+//     // Optionally fallback to appsettings.json
+//     connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+//     tokenEndpoint = builder.Configuration["TokenEndpoint"];
+//     clientId = builder.Configuration["ClientId"];
+//     clientSecret = builder.Configuration["ClientSecret"];
+//     audience = builder.Configuration["Audience"];
+// }
+
+// Use appsettings.json for connection string (default/fallback)
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 if (string.IsNullOrWhiteSpace(connectionString))
 {
     throw new InvalidOperationException(
@@ -28,7 +62,15 @@ if (string.IsNullOrWhiteSpace(connectionString))
         "or set the environment variable 'ConnectionStrings__DefaultConnection'.\n" +
         "Example: export ConnectionStrings__DefaultConnection=\"Server=localhost,1433;Database=EntityTestDb;User Id=sa;Password=Your_password123;TrustServerCertificate=True;\"");
 }
-
+// // Fail fast with a helpful message if the connection string is not configured.
+// if (string.IsNullOrWhiteSpace(connectionString))
+// {
+//     throw new InvalidOperationException(
+//         "Connection string 'DefaultConnection' was not found.\n" +
+//         "Set it in appsettings.json (ConnectionStrings:DefaultConnection),\n" +
+//         "or set the environment variable 'ConnectionStrings__DefaultConnection'.\n" +
+//         "Example: export ConnectionStrings__DefaultConnection=\"Server=localhost,1433;Database=EntityTestDb;User Id=sa;Password=Your_password123;TrustServerCertificate=True;\"");
+// }
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
@@ -89,8 +131,10 @@ builder.Services.AddStackExchangeRedisCache(options =>
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
-        options.Authority = "https://ssapkal.auth0.com/"; // e.g., https://dev-xxxxxx.us.auth0.com/
-        options.Audience = "https://ssapkal.auth0.com/api/v2/"; // e.g., the identifier you set in Auth0 API settings
+        // Use static values or values from configuration
+        options.Authority = builder.Configuration["OAuth:TokenEndpoint"] ?? "https://ssapkal.auth0.com/";
+        options.Audience = builder.Configuration["OAuth:Audience"] ?? "https://ssapkal.auth0.com/api/v2/";
+        // If you need ClientId/ClientSecret for custom token acquisition, use them as needed
     });
 
 var app = builder.Build();

@@ -2036,3 +2036,796 @@ INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
 2026-01-08 10:30:20,131 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
 2026-01-08 10:30:20,131 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
 2026-01-08 10:30:20,131 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-08 11:37:27,579 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (24ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 11:37:27,663 [1] ERROR Microsoft.Extensions.Hosting.Internal.Host - Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5274: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-01-08 11:38:14,197 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 11:38:14,280 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 11:38:14,281 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 11:38:14,281 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 11:38:14,281 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 11:38:17,389 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 11:38:17,392 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 11:38:17,392 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 11:38:17,393 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 11:38:17,393 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-08 11:38:17,438 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-08 11:38:25,815 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - Start processing HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 11:38:25,819 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Sending HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 11:38:26,265 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Received HTTP response headers after 442.2465ms - 200
+2026-01-08 11:38:26,265 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - End processing HTTP request after 452.217ms - 200
+2026-01-08 11:39:40,883 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (40ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-08 11:39:40,890 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products from database and caching
+2026-01-08 11:39:40,903 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products
+2026-01-08 11:39:40,904 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-08 11:39:40,904 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-08 11:39:40,904 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-08 22:38:02,453 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (22ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 22:38:02,503 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 22:38:02,503 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 22:38:02,503 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 22:38:02,503 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 22:38:11,736 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 22:38:11,739 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 22:38:11,739 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 22:38:11,739 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 22:38:11,740 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-08 22:38:11,774 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-08 22:38:11,775 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - Start processing HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 22:38:11,776 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Sending HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 22:38:12,229 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Received HTTP response headers after 450.737ms - 200
+2026-01-08 22:38:12,229 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - End processing HTTP request after 455.0034ms - 200
+2026-01-08 22:38:12,359 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (69ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-08 22:38:12,383 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products from database and caching
+2026-01-08 22:38:12,394 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products
+2026-01-08 22:38:12,394 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-08 22:38:12,394 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-08 22:38:12,394 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-08 22:38:36,588 [.NET Signal Handler] INFO  Microsoft.Hosting.Lifetime - Application is shutting down...
+2026-01-08 22:48:19,256 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 22:48:19,304 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 22:48:19,305 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 22:48:19,305 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 22:48:19,305 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 22:48:24,582 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 22:48:24,583 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 22:48:24,584 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 22:48:24,584 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 22:48:24,584 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-08 22:48:24,615 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-08 22:48:24,617 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: An invalid request URI was provided. Either the request URI must be an absolute URI or BaseAddress must be set.
+System.InvalidOperationException: An invalid request URI was provided. Either the request URI must be an absolute URI or BaseAddress must be set.
+   at System.Net.Http.HttpClient.PrepareRequestMessage(HttpRequestMessage request)
+   at System.Net.Http.HttpClient.SendAsync(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationToken cancellationToken)
+   at EntityTestApi.Services.OAuthTokenService.GetTokenAsync(String tokenEndpoint, String clientId, String clientSecret, String audience) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Services/OAuthTokenService.cs:line 28
+   at EntityTestApi.Controllers.ProductsController.GetProducts(String format) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Controllers/ProductsController.cs:line 211
+   at lambda_method35(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_7>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 195
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 184
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 173
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-08 22:48:50,300 [.NET Signal Handler] INFO  Microsoft.Hosting.Lifetime - Application is shutting down...
+2026-01-08 22:52:13,800 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (10ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 22:52:13,875 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 22:52:13,876 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 22:52:13,876 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 22:52:13,876 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 22:52:34,733 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 22:52:34,736 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 22:52:34,737 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 22:52:34,737 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 22:52:34,738 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-08 22:52:34,784 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-08 23:05:32,650 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (20ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 23:05:32,698 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 23:05:32,699 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 23:05:32,699 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 23:05:32,699 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 23:06:02,166 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 23:06:02,211 [1] ERROR Microsoft.Extensions.Hosting.Internal.Host - Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5274: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-01-08 23:06:41,542 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 23:06:41,589 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 23:06:41,589 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 23:06:41,589 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 23:06:41,589 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 23:06:45,197 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 23:06:45,199 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 23:06:45,200 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 23:06:45,200 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 23:06:45,201 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-08 23:06:45,247 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-08 23:06:45,249 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - Start processing HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 23:06:45,249 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Sending HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 23:06:45,831 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Received HTTP response headers after 578.7716ms - 200
+2026-01-08 23:06:45,831 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - End processing HTTP request after 583.5545ms - 200
+2026-01-08 23:06:45,906 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-08 23:06:45,911 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products from database and caching
+2026-01-08 23:06:45,919 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products
+2026-01-08 23:06:45,919 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-08 23:06:45,919 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-08 23:06:45,919 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-08 23:07:01,540 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 23:07:01,542 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 23:07:01,542 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 23:07:01,542 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/suppliers
+2026-01-08 23:07:01,611 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+System.InvalidOperationException: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method52(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_7>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 213
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 202
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 191
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-08 23:07:10,421 [.NET Signal Handler] INFO  Microsoft.Hosting.Lifetime - Application is shutting down...
+2026-01-08 23:14:03,119 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 23:14:03,162 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 23:14:03,163 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 23:14:03,163 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 23:14:03,163 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 23:14:10,049 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 23:14:10,051 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 23:14:10,051 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 23:14:10,051 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 23:14:10,052 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-08 23:14:10,081 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-08 23:14:10,084 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - Start processing HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 23:14:10,084 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Sending HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-08 23:14:10,547 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Received HTTP response headers after 458.8809ms - 200
+2026-01-08 23:14:10,547 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - End processing HTTP request after 464.5116ms - 200
+2026-01-08 23:14:10,612 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-08 23:14:10,617 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products from database and caching
+2026-01-08 23:14:10,624 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products
+2026-01-08 23:14:10,624 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-08 23:14:10,624 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-08 23:14:10,624 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-08 23:14:15,692 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 23:14:15,693 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 23:14:15,693 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 23:14:15,693 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/suppliers
+2026-01-08 23:14:15,754 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+System.InvalidOperationException: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method52(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_7>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 202
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 191
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 180
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-08 23:14:21,581 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 23:14:21,582 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 23:14:21,582 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 23:14:21,582 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products/debug/routes
+2026-01-08 23:14:21,595 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products/debug/routes
+2026-01-08 23:14:21,596 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-08 23:14:21,596 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-08 23:14:21,596 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-08 23:14:27,436 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 23:14:27,437 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 23:14:27,437 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 23:14:27,437 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request PUT /api/products/1
+2026-01-08 23:14:27,827 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (317ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Description], [p].[Name], [p].[Price], [p].[RowVersion]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @p
+2026-01-08 23:14:27,988 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (102ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 200), @p2='?' (Size = 8) (DbType = Binary)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Products] SET [Name] = @p0
+OUTPUT INSERTED.[RowVersion]
+WHERE [Id] = @p1 AND [RowVersion] = @p2;
+2026-01-08 23:14:27,993 [.NET TP Worker] WARN  EntityTestApi.Controllers.ProductsController - Concurrency conflict when updating product with ID 1
+2026-01-08 23:14:27,993 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 409 for PUT /api/products/1
+2026-01-08 23:14:27,994 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-08 23:14:27,994 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-08 23:14:27,994 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-08 23:15:11,616 [.NET Signal Handler] INFO  Microsoft.Hosting.Lifetime - Application is shutting down...
+2026-01-08 23:16:03,309 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 23:16:03,351 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 23:16:03,352 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 23:16:03,352 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 23:16:03,352 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 23:16:19,382 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 23:16:19,385 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 23:16:19,386 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 23:16:19,386 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 23:16:19,387 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/suppliers
+2026-01-08 23:16:19,419 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+System.InvalidOperationException: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method39(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_7>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 202
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 191
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 180
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-08 23:16:57,181 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 23:16:57,184 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 23:16:57,184 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 23:16:57,184 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/suppliers
+2026-01-08 23:16:57,235 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+System.InvalidOperationException: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method39(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_7>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 202
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 191
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 180
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-08 23:19:44,143 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-08 23:19:44,218 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-08 23:19:44,218 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-08 23:19:44,218 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-08 23:19:44,218 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-08 23:19:48,386 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-08 23:19:48,388 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-08 23:19:48,389 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-08 23:19:48,389 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-08 23:19:48,390 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/suppliers
+2026-01-08 23:19:48,434 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+System.InvalidOperationException: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method39(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_7>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 202
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 191
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 180
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-10 17:06:05,555 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 17:06:05,565 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 17:06:05,565 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 17:06:05,567 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products
+2026-01-10 17:06:05,705 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products, Accept: */*, Format: 
+2026-01-10 17:06:05,762 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - Start processing HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-10 17:06:05,762 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Sending HTTP request POST https://ssapkal.auth0.com/oauth/token
+2026-01-10 17:06:06,354 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.ClientHandler - Received HTTP response headers after 585.3423ms - 200
+2026-01-10 17:06:06,354 [.NET TP Worker] INFO  System.Net.Http.HttpClient.OAuthTokenService.LogicalHandler - End processing HTTP request after 601.272ms - 200
+2026-01-10 17:06:06,536 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (37ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-10 17:06:06,543 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products from database and caching
+2026-01-10 17:06:06,558 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products
+2026-01-10 17:06:06,558 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-10 17:06:06,558 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-10 17:06:06,558 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-10 17:06:12,310 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 17:06:12,310 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 17:06:12,310 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 17:06:12,311 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request PUT /api/products/1
+2026-01-10 17:06:12,432 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (46ms) [Parameters=[@p='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Description], [p].[Name], [p].[Price], [p].[RowVersion]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @p
+2026-01-10 17:06:12,508 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (15ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 200), @p2='?' (Size = 8) (DbType = Binary)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Products] SET [Name] = @p0
+OUTPUT INSERTED.[RowVersion]
+WHERE [Id] = @p1 AND [RowVersion] = @p2;
+2026-01-10 17:06:12,513 [.NET TP Worker] WARN  EntityTestApi.Controllers.ProductsController - Concurrency conflict when updating product with ID 1
+2026-01-10 17:06:12,514 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 409 for PUT /api/products/1
+2026-01-10 17:06:12,515 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-10 17:06:12,515 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-10 17:06:12,515 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-10 17:06:21,068 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 17:06:21,068 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 17:06:21,068 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 17:06:21,069 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /Sachin
+2026-01-10 17:06:21,071 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /Sachin
+2026-01-10 17:06:21,071 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-10 17:06:21,071 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-10 17:06:21,071 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-10 17:06:25,502 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 17:06:25,502 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 17:06:25,502 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 17:06:25,502 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request POST /api/products
+2026-01-10 17:06:26,126 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (414ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 200), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([Description], [Name], [Price])
+OUTPUT INSERTED.[Id], INSERTED.[CategoryId], INSERTED.[RowVersion]
+VALUES (@p0, @p1, @p2);
+2026-01-10 17:06:26,155 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Product created with ID: 4002
+2026-01-10 17:06:26,180 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 201 for POST /api/products
+2026-01-10 17:06:26,180 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-10 17:06:26,180 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-10 17:06:26,180 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-10 17:06:31,564 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 17:06:31,565 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 17:06:31,565 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 17:06:31,566 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products/test/notfound
+2026-01-10 17:06:31,569 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: Product with key '999' was not found.
+EntityTestApi.Exceptions.NotFoundException: Product with key '999' was not found.
+   at EntityTestApi.Controllers.ProductsController.TestNotFoundException() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Controllers/ProductsController.cs:line 486
+   at lambda_method170(Closure, Object, Object[])
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_7>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 202
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 191
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 180
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-10 17:06:37,497 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 17:06:37,499 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 17:06:37,499 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 17:06:37,499 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/ExternalApiTest/externalapi/compare
+2026-01-10 17:06:37,513 [.NET TP Worker] INFO  EntityTestApi.Services.ExternalApiService - Requesting data from https://jsonplaceholder.typicode.com/todos/1
+2026-01-10 17:06:37,513 [.NET TP Worker] INFO  System.Net.Http.HttpClient.ExternalApiService.LogicalHandler - Start processing HTTP request GET https://jsonplaceholder.typicode.com/todos/1
+2026-01-10 17:06:37,513 [.NET TP Worker] INFO  System.Net.Http.HttpClient.ExternalApiService.ClientHandler - Sending HTTP request GET https://jsonplaceholder.typicode.com/todos/1
+2026-01-10 17:06:37,663 [.NET TP Worker] INFO  System.Net.Http.HttpClient.ExternalApiService.ClientHandler - Received HTTP response headers after 149.0664ms - 200
+2026-01-10 17:06:37,663 [.NET TP Worker] INFO  System.Net.Http.HttpClient.ExternalApiService.LogicalHandler - End processing HTTP request after 149.848ms - 200
+2026-01-10 17:06:37,790 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/ExternalApiTest/externalapi/compare
+2026-01-10 17:06:37,790 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-10 17:06:37,790 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-10 17:06:37,790 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-10 17:06:47,008 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 17:06:47,008 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 17:06:47,008 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 17:06:47,008 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/suppliers
+2026-01-10 17:06:47,011 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+System.InvalidOperationException: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method39(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_7>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 202
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 191
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 180
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-10 17:06:52,429 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 17:06:52,432 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 17:06:52,432 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 17:06:52,432 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request POST /api/supplieruow/atomic
+2026-01-10 17:06:52,525 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (41ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 200), @p2='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p3='?' (Size = 100), @p4='?' (Size = 1000), @p5='?' (Size = 200)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Products] ([Description], [Name], [Price])
+OUTPUT INSERTED.[Id], INSERTED.[CategoryId], INSERTED.[RowVersion]
+VALUES (@p0, @p1, @p2);
+INSERT INTO [Suppliers] ([ContactEmail], [Description], [Name])
+OUTPUT INSERTED.[Id]
+VALUES (@p3, @p4, @p5);
+2026-01-10 17:06:52,534 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for POST /api/supplieruow/atomic
+2026-01-10 17:06:52,534 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-10 17:06:52,534 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-10 17:06:52,534 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-10 17:06:56,884 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 17:06:56,884 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 17:06:56,884 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 17:06:56,884 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products/dcaching
+2026-01-10 17:06:56,895 [.NET TP Worker] INFO  EntityTestApi.Controllers.ProductsController - Fetching all products (Redis), Accept: */*, Format: 
+2026-01-10 17:07:02,957 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: The message timed out in the backlog attempting to send because no connection became available (5000ms) - Last Connection Exception: UnableToConnect on localhost:5003/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 0s ago, v: 2.7.27.49176, command=HMGET, timeout: 5000, inst: 0, qu: 0, qs: 0, aw: False, bw: CheckingForTimeout, last-in: 0, cur-in: 0, sync-ops: 0, async-ops: 1, serverEndpoint: localhost:5003, conn-sec: n/a, aoc: 0, mc: 1/1/0, mgr: 10 of 10 available, clientName: Sachins-MacBook-Pro(SE.Redis-v2.7.27.49176), IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=0,Free=32767,Min=10,Max=32767), POOL: (Threads=7,QueuedItems=0,CompletedItems=153363,Timers=19), v: 2.7.27.49176 (Please take a look at this article for some common client-side issues that can cause timeouts: https://stackexchange.github.io/StackExchange.Redis/Timeouts)
+StackExchange.Redis.RedisConnectionException: The message timed out in the backlog attempting to send because no connection became available (5000ms) - Last Connection Exception: UnableToConnect on localhost:5003/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 0s ago, v: 2.7.27.49176, command=HMGET, timeout: 5000, inst: 0, qu: 0, qs: 0, aw: False, bw: CheckingForTimeout, last-in: 0, cur-in: 0, sync-ops: 0, async-ops: 1, serverEndpoint: localhost:5003, conn-sec: n/a, aoc: 0, mc: 1/1/0, mgr: 10 of 10 available, clientName: Sachins-MacBook-Pro(SE.Redis-v2.7.27.49176), IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=0,Free=32767,Min=10,Max=32767), POOL: (Threads=7,QueuedItems=0,CompletedItems=153363,Timers=19), v: 2.7.27.49176 (Please take a look at this article for some common client-side issues that can cause timeouts: https://stackexchange.github.io/StackExchange.Redis/Timeouts)
+ ---> StackExchange.Redis.RedisConnectionException: UnableToConnect on localhost:5003/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 0s ago, last-write: 0s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 0s ago, v: 2.7.27.49176
+   --- End of inner exception stack trace ---
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.GetAndRefreshAsync(String key, Boolean getData, CancellationToken token)
+   at Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache.GetAsync(String key, CancellationToken token)
+   at Microsoft.Extensions.Caching.Distributed.DistributedCacheExtensions.GetStringAsync(IDistributedCache cache, String key, CancellationToken token)
+   at EntityTestApi.Controllers.ProductsController.GetProductsDcaching(String format) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Controllers/ProductsController.cs:line 119
+   at lambda_method236(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_7>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 202
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 191
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 180
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-10 17:07:08,721 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 17:07:08,722 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 17:07:08,722 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 17:07:08,722 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/products/linqtest
+2026-01-10 17:07:08,765 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (26ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[CategoryId], [p].[Description], [p].[Name], [p].[Price], [p].[RowVersion]
+FROM [Products] AS [p]
+2026-01-10 17:07:08,778 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[Description], [p].[Price], [p].[CategoryId], [c].[Name] AS [CategoryName]
+FROM [Products] AS [p]
+INNER JOIN [Categories] AS [c] ON [p].[CategoryId] = [c].[Id]
+2026-01-10 17:07:08,781 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/products/linqtest
+2026-01-10 17:07:08,781 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-10 17:07:08,781 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-10 17:07:08,781 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER
+2026-01-10 20:02:00,198 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (26ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-10 20:02:00,246 [1] ERROR Microsoft.Extensions.Hosting.Internal.Host - Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5274: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-01-10 20:02:29,545 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-10 20:02:29,591 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-10 20:02:29,592 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-10 20:02:29,592 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-10 20:02:29,592 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-10 20:02:33,209 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-10 20:02:33,211 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 20:02:33,211 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 20:02:33,211 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 20:02:33,212 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/suppliers
+2026-01-10 20:02:33,235 [.NET TP Worker] ERROR EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware - An unhandled exception occurred: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+System.InvalidOperationException: Unable to resolve service for type 'EntityTestApi.Kafka.KafkaProducerService' while attempting to activate 'EntityTestApi.Controllers.SuppliersController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method39(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.CustomLoggingMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/CustomLoggingMiddleware.cs:line 18
+   at Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.InterfaceMiddlewareBinder.<>c__DisplayClass2_0.<<CreateMiddleware>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_7>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 202
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_6>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 191
+--- End of stack trace from previous location ---
+   at Program.<>c.<<<Main>$>b__0_5>d.MoveNext() in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Program.cs:line 180
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at EntityTestApi.Middleware.GlobalExceptionHandlerMiddleware.InvokeAsync(HttpContext context, RequestDelegate next) in /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/Middleware/GlobalExceptionHandlerMiddleware.cs:line 28
+2026-01-10 20:09:13,264 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-10 20:09:13,314 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-10 20:09:13,315 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-10 20:09:13,315 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-10 20:09:13,315 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-10 20:09:22,723 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-10 20:09:22,767 [1] ERROR Microsoft.Extensions.Hosting.Internal.Host - Hosting failed to start
+System.IO.IOException: Failed to bind to address http://127.0.0.1:5274: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Address already in use
+ ---> System.Net.Sockets.SocketException (48): Address already in use
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, Boolean disconnectOnFailure, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions.CreateDefaultBoundListenSocket(EndPoint endpoint)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass28_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Hosting.GenericWebHostService.StartAsync(CancellationToken cancellationToken)
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2026-01-10 20:09:45,353 [1] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-01-10 20:09:45,393 [1] INFO  Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5274
+2026-01-10 20:09:45,394 [1] INFO  Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2026-01-10 20:09:45,394 [1] INFO  Microsoft.Hosting.Lifetime - Hosting environment: Development
+2026-01-10 20:09:45,394 [1] INFO  Microsoft.Hosting.Lifetime - Content root path: /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi
+2026-01-10 20:09:50,516 [.NET TP Worker] WARN  Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware - Failed to determine the https port for redirect.
+2026-01-10 20:09:50,519 [.NET TP Worker] INFO  Program - → Middleware 1: BEFORE calling next
+2026-01-10 20:09:50,520 [.NET TP Worker] INFO  Program -   → Middleware 2: BEFORE calling next
+2026-01-10 20:09:50,520 [.NET TP Worker] INFO  Program -     → Middleware 3: BEFORE calling next
+2026-01-10 20:09:50,521 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - → Custom Middleware: Request GET /api/suppliers
+2026-01-10 20:09:50,657 [.NET TP Worker] INFO  Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (77ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [s].[Id], [s].[ContactEmail], [s].[Description], [s].[Name]
+FROM [Suppliers] AS [s]
+2026-01-10 20:09:50,670 [.NET TP Worker] INFO  EntityTestApi.Middleware.CustomLoggingMiddleware - ← Custom Middleware: Response 200 for GET /api/suppliers
+2026-01-10 20:09:50,670 [.NET TP Worker] INFO  Program -     ← Middleware 3: AFTER
+2026-01-10 20:09:50,671 [.NET TP Worker] INFO  Program -   ← Middleware 2: AFTER
+2026-01-10 20:09:50,671 [.NET TP Worker] INFO  Program - ← Middleware 1: AFTER

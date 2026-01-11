@@ -242,3 +242,6 @@
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/obj/Debug/net10.0/EntityTe.D6D52BC3.Up2Date
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/obj/Debug/net10.0/EntityTestApi.dll
 /Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/obj/Debug/net10.0/EntityTestApi.genruntimeconfig.cache
+/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Azure.Extensions.AspNetCore.Configuration.Secrets.dll
+/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/Azure.Security.KeyVault.Secrets.dll
+/Users/sachinsapkal/Projects/entitycore/Entitytest/EntityTestApi/bin/Debug/net10.0/package-lock.json
